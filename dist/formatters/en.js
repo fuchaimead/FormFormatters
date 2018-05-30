@@ -1,6 +1,8 @@
 "use strict";
 
 module.exports = {
+  amexCreditCardInvalid: "invalid amex credit card number",
+  creditCardInvalid: "invalid credit card number",
   dateInvalid: "invalid date",
   emailInvalid: "invalid email",
   hexInvalid: "invalid hex code",

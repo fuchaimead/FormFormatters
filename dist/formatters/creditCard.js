@@ -35,7 +35,7 @@ var CreditCardFormatter = {
           valid = false;
           parsed = value;
           formatted = value;
-          errors.push("FormFormatters.otherCreditCardInvalid");
+          errors.push("FormFormatters.creditCardInvalid");
         }
       }
     }

@@ -58,3 +58,9 @@ SsnLastFourMask
 StringMask
 TimeMask
 WholeNumberMask
+
+## Releases
+
+v0.4.0
+
+- Add credit card formatter

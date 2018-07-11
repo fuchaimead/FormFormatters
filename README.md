@@ -63,6 +63,11 @@ The mask will return in the the same format as the entry. In other words, it wil
 
 ## Releases
 
+v0.4.1
+
+Hex formatter now includes a # symbol at the beginning of the string.
+
+
 v0.4.0
 
 - Add credit card formatter

@@ -33,31 +33,33 @@ You might be thinking, but it's a number field how come the result has letters i
 The mask will return in the the same format as the entry. In other words, it will not return in a complex object.
 
 ## Formatters
-CurrencyFormatter
-DateFormatter
-EmailFormatter
-HexFormatter
-NameFormatter
-NumberFormatter
-PercentFormatter
-PhoneFormatter
-RgbFormatter
-SsnLastFourFormatter
-StringFormatter
-TimeFormatter
+
+- CurrencyFormatter
+- DateFormatter
+- EmailFormatter
+- HexFormatter
+- NameFormatter
+- NumberFormatter
+- PercentFormatter
+- PhoneFormatter
+- RgbFormatter
+- SsnLastFourFormatter
+- StringFormatter
+- TimeFormatter
 
 ## Masks
-CurrencyMask
-DecimalMask
-EmailMask
-HexMask
-PercentMask
-PhoneMask
-SsnMask
-SsnLastFourMask
-StringMask
-TimeMask
-WholeNumberMask
+
+- CurrencyMask
+- DecimalMask
+- EmailMask
+- HexMask
+- PercentMask
+- PhoneMask
+- SsnMask
+- SsnLastFourMask
+- StringMask
+- TimeMask
+- WholeNumberMask
 
 ## Releases
 

@@ -31,7 +31,7 @@ test("does not return an error if not required", t => {
 test("trims white space", t => {
   t.deepEqual(formatter.format(" 1112223333 "), {
     errors: [],
-    formatted: "$1,112,223,333.00",
+    formatted: "1,112,223,333.00",
     parsed: 1112223333,
     valid: true
   });
@@ -40,7 +40,7 @@ test("trims white space", t => {
 test("formats cents", t => {
   t.deepEqual(formatter.format("$5.14"), {
     errors: [],
-    formatted: "$5.14",
+    formatted: "5.14",
     parsed: 5.14,
     valid: true
   });
@@ -49,7 +49,7 @@ test("formats cents", t => {
 test("formats dollars", t => {
   t.deepEqual(formatter.format("$5.14", {format: "dollars"}), {
     errors: [],
-    formatted: "$5",
+    formatted: "5",
     parsed: 5.14,
     valid: true
   });

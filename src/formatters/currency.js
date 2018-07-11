@@ -20,9 +20,9 @@ const CurrencyFormatter = {
           errors.push("FormFormatters.required");
         }
       }
-      formatted = numObj.format("$0,0.00");
+      formatted = numObj.format("0,0.00");
       if(options.format === "dollars") {
-        formatted = numObj.format("$0,0");
+        formatted = numObj.format("0,0");
       }
     }
 

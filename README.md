@@ -4,7 +4,7 @@
 
 Formatters and masks for validating and manipulating user input.
 
-This library uses [Simple Translator](https://github.com/AlchemyAlcove/SimpleTranslator) library for multi lingual support on error messages.
+This library is designed translation of error messages. It will respond with unique keys representing error text. You chould use [Simple Translator](https://github.com/AlchemyAlcove/SimpleTranslator) library for multi lingual support on error messages.
 
 Formatters take user input and return an object. For example if the user entered " 1112223333 " into a currency field. The response would be:
 

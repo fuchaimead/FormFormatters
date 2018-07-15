@@ -1,5 +1,5 @@
 const CreditCardMask = {
-  mask(value, options = {}) {
+  mask(value) {
     return(value.replace(/[^0-9-\s]+/g, ""));
   }
 };

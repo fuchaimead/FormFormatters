@@ -45,3 +45,12 @@ test("accepts hash tag", t => {
     valid: true
   });
 });
+
+test("invalid", t => {
+  t.deepEqual(formatter.format("#00FFF"), {
+    errors: ["FormFormatters.hexInvalid"],
+    formatted: "#00FFF",
+    parsed: "#00FFF",
+    valid: false
+  });
+});

@@ -8,3 +8,7 @@ test("trims white space", t => {
 test("accepts hash tag", t => {
   t.deepEqual(mask.mask("#666666"), "#666666");
 });
+
+test("invalid", t => {
+  t.deepEqual(mask.mask("#00FFF"), "#00FFF");
+});

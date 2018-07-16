@@ -1,6 +1,6 @@
 const WholeNumberMask = {
-  mask(value, options = {}) {
-    return(value.replace(/[^0-9]+/g, ""));
+  mask(value) {
+    return(value.replace(/[^0-9,]+/g, ""));
   }
 };
 

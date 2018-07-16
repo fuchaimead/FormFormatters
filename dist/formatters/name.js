@@ -1,24 +1,16 @@
 "use strict";
 
-var _string = require("./string");
-
-var _string2 = _interopRequireDefault(_string);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _lodash = require("lodash");
 
 var NameFormatter = {
   format: function format(value) {
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var parsed = value;
+    var formatted = value;
+    var errors = [];
 
-    var _StrFormatter$format = _string2.default.format(value, options),
-        valid = _StrFormatter$format.valid,
-        parsed = _StrFormatter$format.parsed,
-        formatted = _StrFormatter$format.formatted,
-        errors = _StrFormatter$format.errors;
-
-    parsed = parsed.toLowerCase();
-    formatted = formatted.toLowerCase();
-    if (valid && parsed.length > 0) {
+    if (!(0, _lodash.isNil)(value) && value !== "") {
+      parsed = parsed.toString().toLowerCase().trim();
+      formatted = formatted.toString().toLowerCase().trim();
       var arr = parsed.split(" ").map(function (item) {
         return item.charAt(0).toUpperCase() + item.slice(1);
       });
@@ -27,7 +19,7 @@ var NameFormatter = {
     }
 
     return {
-      valid: valid,
+      valid: errors.length === 0,
       parsed: parsed,
       formatted: formatted,
       errors: errors

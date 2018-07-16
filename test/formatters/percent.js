@@ -2,24 +2,15 @@ import test from "ava";
 import formatter from "../../src/formatters/percent";
 
 test("converts null", t => {
-  t.deepEqual(formatter.format(null, {required: true}), {
-    errors: ["FormFormatters.required"],
-    formatted: "",
-    parsed: "",
-    valid: false
+  t.deepEqual(formatter.format(null), {
+    errors: [],
+    formatted: null,
+    parsed: null,
+    valid: true
   });
 });
 
-test("returns an error if required", t => {
-  t.deepEqual(formatter.format("", {required: true}), {
-    errors: ["FormFormatters.required"],
-    formatted: "",
-    parsed: "",
-    valid: false
-  });
-});
-
-test("does not return an error if not required", t => {
+test("does not return an error if empty string", t => {
   t.deepEqual(formatter.format(""), {
     errors: [],
     formatted: "",
@@ -31,16 +22,16 @@ test("does not return an error if not required", t => {
 test("converts number", t => {
   t.deepEqual(formatter.format(23), {
     errors: [],
-    formatted: "23.00%",
+    formatted: "23%",
     parsed: 23,
     valid: true
   });
 });
 
-test("no decimal", t => {
-  t.deepEqual(formatter.format(23.23, {format: "whole"}), {
+test("has decimal", t => {
+  t.deepEqual(formatter.format(23.23), {
     errors: [],
-    formatted: "23%",
+    formatted: "23.23%",
     parsed: 23.23,
     valid: true
   });
@@ -49,7 +40,7 @@ test("no decimal", t => {
 test("trims white space", t => {
   t.deepEqual(formatter.format(" 1112223333 "), {
     errors: [],
-    formatted: "1,112,223,333.00%",
+    formatted: "1,112,223,333%",
     parsed: 1112223333,
     valid: true
   });
@@ -58,7 +49,7 @@ test("trims white space", t => {
 test("formats strings", t => {
   t.deepEqual(formatter.format("1112223333"), {
     errors: [],
-    formatted: "1,112,223,333.00%",
+    formatted: "1,112,223,333%",
     parsed: 1112223333,
     valid: true
   });
@@ -66,17 +57,17 @@ test("formats strings", t => {
 
 test("handles errors", t => {
   t.deepEqual(formatter.format("asdf"), {
-    errors: ["FormFormatters.required"],
+    errors: ["FormFormatters.numberInvalid"],
     formatted: "asdf",
     parsed: "asdf",
     valid: false
   });
 });
 
-test("no decimal string", t => {
-  t.deepEqual(formatter.format("23.23%", {format: "whole"}), {
+test("decimal string", t => {
+  t.deepEqual(formatter.format("23.23%"), {
     errors: [],
-    formatted: "23%",
+    formatted: "23.23%",
     parsed: 23.23,
     valid: true
   });

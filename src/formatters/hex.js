@@ -1,29 +1,30 @@
-import StrFormatter from "./string";
+import { isNil } from "lodash";
 
 const HexFormatter = {
-  format(value, options = {}) {
-    let{valid, parsed, formatted, errors} = StrFormatter.format(value, options);
+  format(value) {
+    let parsed = value;
+    let formatted = value;
+    let errors = [];
 
-    parsed = parsed.toUpperCase().trim();
-    formatted = formatted.toUpperCase().trim();
-    if(valid && parsed.length > 0) {
+    if(!isNil(value) && value !== "") {
+      parsed = parsed.toString().toUpperCase().trim();
+      formatted = formatted.toString().toUpperCase().trim();
       // remove all non-digits
-      let hexRegex = /^(#([0-9a-fA-F]{2}){3}|([0-9a-fA-F]{2}){3})$/;
-      valid = hexRegex.test(formatted);
-      if(parsed.length === 6 && parsed[0] !== "#") {
-        parsed = "#" + parsed;
-        formatted = "#" + formatted;
-      }
-      if(parsed.length !== 7) {
-        valid = false;
-      }
-      if(!valid) {
+      if(/^(#([0-9a-fA-F]{2}){3}|([0-9a-fA-F]{2}){3})$/.test(formatted)) {
+        if(parsed.length === 6 && parsed[0] !== "#") {
+          parsed = "#" + parsed;
+          formatted = "#" + formatted;
+        }
+        if(parsed.length !== 7) {
+          errors.push("FormFormatters.hexInvalid");
+        }
+      } else {
         errors.push("FormFormatters.hexInvalid");
       }
     }
 
     return({
-      valid,
+      valid: errors.length === 0,
       parsed,
       formatted,
       errors

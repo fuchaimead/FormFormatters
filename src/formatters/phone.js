@@ -1,15 +1,16 @@
-import StrFormatter from "./string";
+import { isNil } from "lodash";
 
 const PhoneFormatter = {
-  format(value, options = {}) {
-    let{valid, parsed, formatted, errors} = StrFormatter.format(value, options);
+  format(value) {
+    let parsed = value;
+    let formatted = value;
+    let errors = [];
 
-    if(valid && parsed.length > 0) {
+    if(!isNil(value) && value !== "") {
       // remove all non-digits
-      parsed = parsed.replace(/\D/g, "");
+      parsed = parsed.toString().replace(/\D/g, "");
       formatted = parsed.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
       if(parsed.length !== 10) {
-        valid = false;
         parsed = value;
         formatted = value;
         errors.push("FormFormatters.phoneInvalid");
@@ -17,7 +18,7 @@ const PhoneFormatter = {
     }
 
     return({
-      valid,
+      valid: errors.length === 0,
       parsed,
       formatted,
       errors

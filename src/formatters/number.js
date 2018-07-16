@@ -1,25 +1,24 @@
-import numeral from "numeral";
-import StrFormatter from "./string";
+import Numeral from "numeral";
+import { isNil } from "lodash";
 
 const NumberFormatter = {
-  format(value, options = {}) {
-    let{valid, parsed, formatted, errors} = StrFormatter.format(value, options);
+  format(value) {
+    let parsed = value;
+    let formatted = value;
+    let errors = [];
 
-    if(valid && parsed.length > 0) {
-      parsed = numeral(parsed.replace(/[$\s,]/g, "").trim()).value();
-      if(typeof(parsed) === "undefined" || parsed === null) {
+    if(!isNil(value) && value !== "") {
+      parsed = Numeral(parsed.toString().replace(/[$\s,]/g, "").trim()).value();
+      if(typeof(parsed) === "undefined" || parsed === null || isNaN(parsed)) {
         parsed = value;
-        formatted = value;
-        if(options.required) {
-          valid = false;
-          errors.push("FormFormatters.required");
-        }
+        errors.push("FormFormatters.numberInvalid");
+      } else {
+        formatted = parsed.toString();
       }
-      formatted = parsed.toString();
     }
 
     return({
-      valid,
+      valid: errors.length === 0,
       parsed,
       formatted,
       errors

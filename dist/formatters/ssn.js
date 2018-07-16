@@ -1,27 +1,20 @@
 "use strict";
 
-var _string = require("./string");
-
-var _string2 = _interopRequireDefault(_string);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _lodash = require("lodash");
 
 var SSNFormatter = {
   format: function format(value) {
     var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-    var _StrFormatter$format = _string2.default.format(value, options),
-        valid = _StrFormatter$format.valid,
-        parsed = _StrFormatter$format.parsed,
-        formatted = _StrFormatter$format.formatted,
-        errors = _StrFormatter$format.errors;
+    var parsed = value;
+    var formatted = value;
+    var errors = [];
 
-    if (valid && parsed.length > 0) {
+    if (!(0, _lodash.isNil)(value) && value !== "") {
       // remove all non-digits
-      parsed = parsed.replace(/\D/g, "");
+      parsed = parsed.toString().replace(/\D/g, "");
       formatted = parsed.replace(/^(\d{3})(\d{2})(\d{4})$/, "$1-$2-$3");
       if (parsed.length !== 9) {
-        valid = false;
         parsed = value;
         formatted = value;
         errors.push("FormFormatters.ssnInvalid");
@@ -29,7 +22,7 @@ var SSNFormatter = {
     }
 
     return {
-      valid: valid,
+      valid: errors.length === 0,
       parsed: parsed,
       formatted: formatted,
       errors: errors

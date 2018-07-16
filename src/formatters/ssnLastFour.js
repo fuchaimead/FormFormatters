@@ -1,22 +1,24 @@
-import StringFormatter from "./string";
+import { isNil } from "lodash";
 
 const SSNLastFourFormatter = {
   format(value, options = {}) {
-    let{valid, parsed, formatted, errors} = StringFormatter.format(value, options);
+    let parsed = value;
+    let formatted = value;
+    let errors = [];
 
-    if(valid) {
-      parsed = parsed.replace(/\D/g, "");
+    if(!isNil(value) && value !== "") {
+      parsed = parsed.toString().replace(/\D/g, "").trim();
       formatted = parsed;
 
       if(parsed.length !== 4) {
-        valid = false;
-        errors.push();
+        parsed = value;
+        formatted = value;
         errors.push("FormFormatters.last4Invalid");
       }
     }
 
     return({
-      valid,
+      valid: errors.length === 0,
       parsed,
       formatted,
       errors

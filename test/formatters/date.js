@@ -2,20 +2,20 @@ import formatter from "../../src/formatters/date";
 import test from "ava";
 
 test("converts null", t => {
-  t.deepEqual(formatter.format(null, {required: true}), {
-    errors: ["FormFormatters.required"],
-    formatted: "",
-    parsed: "",
-    valid: false
+  t.deepEqual(formatter.format(null), {
+    errors: [],
+    formatted: null,
+    parsed: null,
+    valid: true
   });
 });
 
 test("returns an error if required", t => {
-  t.deepEqual(formatter.format("", {required: true}), {
-    errors: ["FormFormatters.required"],
+  t.deepEqual(formatter.format(""), {
+    errors: [],
     formatted: "",
     parsed: "",
-    valid: false
+    valid: true
   });
 });
 
@@ -94,8 +94,8 @@ test("formats MMM DD YYYY h:mm", t => {
 test("does not handle errors", t => {
   t.deepEqual(formatter.format("abc"), {
     errors: ["FormFormatters.dateInvalid"],
-    formatted: "",
-    parsed: "",
+    formatted: "abc",
+    parsed: "abc",
     valid: false
   });
 });

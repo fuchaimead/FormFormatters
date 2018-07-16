@@ -19,16 +19,7 @@ test("trims white space", t => {
   });
 });
 
-test("returns an error if required", t => {
-  t.deepEqual(formatter.format("", {required: true}), {
-    errors: ["FormFormatters.required"],
-    formatted: "",
-    parsed: "",
-    valid: false
-  });
-});
-
-test("does not return an error if not required", t => {
+test("does not return an error if empty string", t => {
   t.deepEqual(formatter.format(""), {
     errors: [],
     formatted: "",
@@ -37,11 +28,11 @@ test("does not return an error if not required", t => {
   });
 });
 
-test("converts null", t => {
-  t.deepEqual(formatter.format(null, {required: true}), {
-    errors: ["FormFormatters.required"],
-    formatted: "",
-    parsed: "",
-    valid: false
+test("accepts null", t => {
+  t.deepEqual(formatter.format(null), {
+    errors: [],
+    formatted: null,
+    parsed: null,
+    valid: true
   });
 });

@@ -2,25 +2,16 @@ import formatter from "../../src/formatters/currency";
 import test from "ava";
 
 test("converts null", t => {
-  t.deepEqual(formatter.format(null, {required: true}), {
-    errors: ["FormFormatters.required"],
-    formatted: "",
-    parsed: "",
-    valid: false
-  });
-});
-
-test("returns an error if required", t => {
-  t.deepEqual(formatter.format("", {required: true}), {
-    errors: ["FormFormatters.required"],
-    formatted: "",
-    parsed: "",
-    valid: false
-  });
-});
-
-test("does not return an error if not required", t => {
   t.deepEqual(formatter.format(null), {
+    errors: [],
+    formatted: null,
+    parsed: null,
+    valid: true
+  });
+});
+
+test("returns a empty string", t => {
+  t.deepEqual(formatter.format(""), {
     errors: [],
     formatted: "",
     parsed: "",
@@ -46,18 +37,18 @@ test("formats cents", t => {
   });
 });
 
-test("formats dollars", t => {
-  t.deepEqual(formatter.format("$5.14", {format: "dollars"}), {
+test("formats cents", t => {
+  t.deepEqual(formatter.format("5"), {
     errors: [],
-    formatted: "5",
-    parsed: 5.14,
+    formatted: "5.00",
+    parsed: 5.00,
     valid: true
   });
 });
 
 test("(doesn't) handle errors", t => {
-  t.deepEqual(formatter.format("abc", {required: true}), {
-    errors: ["FormFormatters.required"],
+  t.deepEqual(formatter.format("abc"), {
+    errors: ["FormFormatters.numberInvalid"],
     formatted: "abc",
     parsed: "abc",
     valid: false

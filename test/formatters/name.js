@@ -2,24 +2,15 @@ import formatter from "../../src/formatters/name";
 import test from "ava";
 
 test("converts null", t => {
-  t.deepEqual(formatter.format(null, {required: true}), {
-    errors: ["FormFormatters.required"],
-    formatted: "",
-    parsed: "",
-    valid: false
+  t.deepEqual(formatter.format(null), {
+    errors: [],
+    formatted: null,
+    parsed: null,
+    valid: true
   });
 });
 
-test("returns an error if required", t => {
-  t.deepEqual(formatter.format("", {required: true}), {
-    errors: ["FormFormatters.required"],
-    formatted: "",
-    parsed: "",
-    valid: false
-  });
-});
-
-test("does not return an error if not required", t => {
+test("does not return an error if empty string", t => {
   t.deepEqual(formatter.format(""), {
     errors: [],
     formatted: "",
@@ -47,10 +38,10 @@ test("trims whitespace", t => {
 });
 
 test("catches lowercase names", t => {
-  t.deepEqual(formatter.format("bob smith"), {
+  t.deepEqual(formatter.format("merle juanita van oster"), {
     errors: [],
-    formatted: "Bob Smith",
-    parsed: "Bob Smith",
+    formatted: "Merle Juanita Van Oster",
+    parsed: "Merle Juanita Van Oster",
     valid: true
   });
 });

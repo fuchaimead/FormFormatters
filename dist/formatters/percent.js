@@ -4,46 +4,33 @@ var _numeral = require("numeral");
 
 var _numeral2 = _interopRequireDefault(_numeral);
 
-var _string = require("./string");
-
-var _string2 = _interopRequireDefault(_string);
-
 var _lodash = require("lodash");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var PercentFormatter = {
   format: function format(value) {
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var parsed = value;
+    var formatted = value;
+    var errors = [];
 
-    options = (0, _lodash.merge)({}, { format: "decimal" }, options);
-
-    var _StrFormatter$format = _string2.default.format(value, options),
-        valid = _StrFormatter$format.valid,
-        parsed = _StrFormatter$format.parsed,
-        formatted = _StrFormatter$format.formatted,
-        errors = _StrFormatter$format.errors;
-
-    if (!(0, _lodash.isEmpty)(parsed)) {
-      var numObj = (0, _numeral2.default)((0, _lodash.trim)(parsed.replace(/[$\s,%]/g, "")));
+    if (!(0, _lodash.isNil)(value) && value !== "") {
+      var numObj = (0, _numeral2.default)(parsed.toString().replace(/[$\s,%]/g, "").trim());
       parsed = numObj.value();
-      if (typeof parsed === "undefined" || parsed === null) {
+      if (typeof parsed === "undefined" || parsed === null || isNaN(parsed)) {
         parsed = value;
-        formatted = value;
-        valid = false;
-        errors.push("FormFormatters.required");
+        errors.push("FormFormatters.numberInvalid");
       } else {
-        if (options.format === "decimal") {
-          formatted = numObj.format("0,0.00");
+        if (parsed % 1 === 0) {
+          formatted = numObj.format("0,0") + "%";
         } else {
-          formatted = numObj.format("0,0");
+          formatted = numObj.format("0,0.00") + "%";
         }
-        formatted = formatted + "%";
       }
     }
 
     return {
-      valid: valid,
+      valid: errors.length === 0,
       parsed: parsed,
       formatted: formatted,
       errors: errors

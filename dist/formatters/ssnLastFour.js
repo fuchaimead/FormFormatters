@@ -1,34 +1,28 @@
 "use strict";
 
-var _string = require("./string");
-
-var _string2 = _interopRequireDefault(_string);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _lodash = require("lodash");
 
 var SSNLastFourFormatter = {
   format: function format(value) {
     var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-    var _StringFormatter$form = _string2.default.format(value, options),
-        valid = _StringFormatter$form.valid,
-        parsed = _StringFormatter$form.parsed,
-        formatted = _StringFormatter$form.formatted,
-        errors = _StringFormatter$form.errors;
+    var parsed = value;
+    var formatted = value;
+    var errors = [];
 
-    if (valid) {
-      parsed = parsed.replace(/\D/g, "");
+    if (!(0, _lodash.isNil)(value) && value !== "") {
+      parsed = parsed.toString().replace(/\D/g, "").trim();
       formatted = parsed;
 
       if (parsed.length !== 4) {
-        valid = false;
-        errors.push();
+        parsed = value;
+        formatted = value;
         errors.push("FormFormatters.last4Invalid");
       }
     }
 
     return {
-      valid: valid,
+      valid: errors.length === 0,
       parsed: parsed,
       formatted: formatted,
       errors: errors

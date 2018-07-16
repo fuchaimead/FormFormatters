@@ -1,41 +1,32 @@
 "use strict";
 
-var _string = require("./string");
-
-var _string2 = _interopRequireDefault(_string);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _lodash = require("lodash");
 
 var HexFormatter = {
   format: function format(value) {
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var parsed = value;
+    var formatted = value;
+    var errors = [];
 
-    var _StrFormatter$format = _string2.default.format(value, options),
-        valid = _StrFormatter$format.valid,
-        parsed = _StrFormatter$format.parsed,
-        formatted = _StrFormatter$format.formatted,
-        errors = _StrFormatter$format.errors;
-
-    parsed = parsed.toUpperCase().trim();
-    formatted = formatted.toUpperCase().trim();
-    if (valid && parsed.length > 0) {
+    if (!(0, _lodash.isNil)(value) && value !== "") {
+      parsed = parsed.toString().toUpperCase().trim();
+      formatted = formatted.toString().toUpperCase().trim();
       // remove all non-digits
-      var hexRegex = /^(#([0-9a-fA-F]{2}){3}|([0-9a-fA-F]{2}){3})$/;
-      valid = hexRegex.test(formatted);
-      if (parsed.length === 6 && parsed[0] !== "#") {
-        parsed = "#" + parsed;
-        formatted = "#" + formatted;
-      }
-      if (parsed.length !== 7) {
-        valid = false;
-      }
-      if (!valid) {
+      if (/^(#([0-9a-fA-F]{2}){3}|([0-9a-fA-F]{2}){3})$/.test(formatted)) {
+        if (parsed.length === 6 && parsed[0] !== "#") {
+          parsed = "#" + parsed;
+          formatted = "#" + formatted;
+        }
+        if (parsed.length !== 7) {
+          errors.push("FormFormatters.hexInvalid");
+        }
+      } else {
         errors.push("FormFormatters.hexInvalid");
       }
     }
 
     return {
-      valid: valid,
+      valid: errors.length === 0,
       parsed: parsed,
       formatted: formatted,
       errors: errors

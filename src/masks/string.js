@@ -1,5 +1,5 @@
 const StringMask = {
-  mask(value, options = {}) {
+  mask(value) {
     return(value);
   }
 };

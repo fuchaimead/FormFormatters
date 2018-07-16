@@ -2,24 +2,15 @@ import formatter from "../../src/formatters/number";
 import test from "ava";
 
 test("converts null", t => {
-  t.deepEqual(formatter.format(null, {required: true}), {
-    errors: ["FormFormatters.required"],
-    formatted: "",
-    parsed: "",
-    valid: false
+  t.deepEqual(formatter.format(null), {
+    errors: [],
+    formatted: null,
+    parsed: null,
+    valid: true
   });
 });
 
-test("returns an error if required", t => {
-  t.deepEqual(formatter.format("", {required: true}), {
-    errors: ["FormFormatters.required"],
-    formatted: "",
-    parsed: "",
-    valid: false
-  });
-});
-
-test("does not return an error if not required", t => {
+test("returns an empty string", t => {
   t.deepEqual(formatter.format(""), {
     errors: [],
     formatted: "",
@@ -37,11 +28,20 @@ test("trims white space", t => {
   });
 });
 
-test("handles errors", t => {
+test("handles letters", t => {
   t.deepEqual(formatter.format("111asdf222333.23"), {
     errors: [],
     formatted: "111222333.23",
     parsed: 111222333.23,
     valid: true
+  });
+});
+
+test("handles errors", t => {
+  t.deepEqual(formatter.format("111.222333.23"), {
+    errors: ["FormFormatters.numberInvalid"],
+    formatted: "111.222333.23",
+    parsed: "111.222333.23",
+    valid: false
   });
 });

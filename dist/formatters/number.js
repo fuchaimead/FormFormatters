@@ -4,37 +4,28 @@ var _numeral = require("numeral");
 
 var _numeral2 = _interopRequireDefault(_numeral);
 
-var _string = require("./string");
-
-var _string2 = _interopRequireDefault(_string);
+var _lodash = require("lodash");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var NumberFormatter = {
   format: function format(value) {
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var parsed = value;
+    var formatted = value;
+    var errors = [];
 
-    var _StrFormatter$format = _string2.default.format(value, options),
-        valid = _StrFormatter$format.valid,
-        parsed = _StrFormatter$format.parsed,
-        formatted = _StrFormatter$format.formatted,
-        errors = _StrFormatter$format.errors;
-
-    if (valid && parsed.length > 0) {
-      parsed = (0, _numeral2.default)(parsed.replace(/[$\s,]/g, "").trim()).value();
-      if (typeof parsed === "undefined" || parsed === null) {
+    if (!(0, _lodash.isNil)(value) && value !== "") {
+      parsed = (0, _numeral2.default)(parsed.toString().replace(/[$\s,]/g, "").trim()).value();
+      if (typeof parsed === "undefined" || parsed === null || isNaN(parsed)) {
         parsed = value;
-        formatted = value;
-        if (options.required) {
-          valid = false;
-          errors.push("FormFormatters.required");
-        }
+        errors.push("FormFormatters.numberInvalid");
+      } else {
+        formatted = parsed.toString();
       }
-      formatted = parsed.toString();
     }
 
     return {
-      valid: valid,
+      valid: errors.length === 0,
       parsed: parsed,
       formatted: formatted,
       errors: errors

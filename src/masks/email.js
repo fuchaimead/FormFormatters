@@ -1,5 +1,5 @@
 const EmailMask = {
-  mask(value, options = {}) {
+  mask(value) {
     return(value.toLowerCase());
   }
 };

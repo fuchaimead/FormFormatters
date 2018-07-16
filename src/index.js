@@ -13,6 +13,7 @@ module.exports = {
   MonthYearFormatter: require("./formatters/monthYear"),
   NameFormatter: require("./formatters/name"),
   NumberFormatter: require("./formatters/number"),
+  NumberMask: require("./masks/number"),
   PercentFormatter: require("./formatters/percent"),
   PercentMask: require("./masks/percent"),
   PhoneFormatter: require("./formatters/phone"),

@@ -1,4 +1,4 @@
-import { isEmpty, isNil, isNumber } from "lodash";
+import { isNil, isNumber } from "lodash";
 
 const StringFormatter = {
   format(value) {

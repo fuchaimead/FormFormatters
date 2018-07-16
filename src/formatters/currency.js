@@ -9,7 +9,7 @@ const CurrencyFormatter = {
 
     if(!isNil(value) && !isEmpty(value)) {
       let numObj = Numeral(parsed.replace(/[$\s,]/g, "").trim());
-      parsed = numObj.value()
+      parsed = numObj.value();
       if(typeof(parsed) === "undefined" || parsed === null || isNaN(parsed)) {
         parsed = value;
         errors.push("FormFormatters.numberInvalid");

@@ -1,50 +1,32 @@
 "use strict";
 
-var _lodash = require("lodash");
-
 var _numeral = require("numeral");
 
 var _numeral2 = _interopRequireDefault(_numeral);
 
-var _number = require("./number");
-
-var _number2 = _interopRequireDefault(_number);
+var _lodash = require("lodash");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var CurrencyFormatter = {
   format: function format(value) {
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var parsed = value;
+    var formatted = value;
+    var errors = [];
 
-    if ((0, _lodash.isNil)(options["format"])) {
-      options["format"] = "cents";
-    }
-
-    var _NumberFormatter$form = _number2.default.format(value, options),
-        valid = _NumberFormatter$form.valid,
-        parsed = _NumberFormatter$form.parsed,
-        formatted = _NumberFormatter$form.formatted,
-        errors = _NumberFormatter$form.errors;
-
-    if (valid && parsed !== "") {
-      var numObj = (0, _numeral2.default)(parsed);
+    if (!(0, _lodash.isNil)(value) && !(0, _lodash.isEmpty)(value)) {
+      var numObj = (0, _numeral2.default)(parsed.replace(/[$\s,]/g, "").trim());
       parsed = numObj.value();
-      if (typeof parsed === "undefined" || parsed === null) {
-        parsed = value || "";
-        formatted = value || "";
-        if (options.required && valid) {
-          valid = false;
-          errors.push("FormFormatters.required");
-        }
-      }
-      formatted = numObj.format("$0,0.00");
-      if (options.format === "dollars") {
-        formatted = numObj.format("$0,0");
+      if (typeof parsed === "undefined" || parsed === null || isNaN(parsed)) {
+        parsed = value;
+        errors.push("FormFormatters.numberInvalid");
+      } else {
+        formatted = numObj.format("0,0.00");
       }
     }
 
     return {
-      valid: valid,
+      valid: errors.length === 0,
       parsed: parsed,
       formatted: formatted,
       errors: errors

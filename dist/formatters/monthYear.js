@@ -1,28 +1,27 @@
 "use strict";
 
-var _numeral = require("numeral");
+var _date = require("../utils/date");
 
-var _numeral2 = _interopRequireDefault(_numeral);
+var _date2 = _interopRequireDefault(_date);
 
 var _lodash = require("lodash");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var RgbFormatter = {
+var DateFormatter = {
   format: function format(value) {
     var parsed = value;
     var formatted = value;
     var errors = [];
 
     if (!(0, _lodash.isNil)(value) && value !== "") {
-      parsed = (0, _numeral2.default)(parsed.toString().trim()).value();
-      if ((0, _lodash.isNil)(parsed) || isNaN(parsed)) {
-        parsed = value;
-      } else if (parsed > 255 || parsed < 0) {
-        parsed = value;
-        errors.push("FormFormatters.rgbInvalid");
+      var temp = _date2.default.parse(parsed);
+      if (temp.isValid()) {
+        // store parsed value as just the date portion.
+        parsed = temp.format("YYYY-MM-DD");
+        formatted = temp.format("MMM YYYY");
       } else {
-        formatted = parsed;
+        errors.push("FormFormatters.dateInvalid");
       }
     }
 
@@ -35,4 +34,4 @@ var RgbFormatter = {
   }
 };
 
-module.exports = RgbFormatter;
+module.exports = DateFormatter;

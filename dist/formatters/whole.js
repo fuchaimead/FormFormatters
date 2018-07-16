@@ -8,21 +8,20 @@ var _lodash = require("lodash");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var RgbFormatter = {
+var WholeFormatter = {
   format: function format(value) {
     var parsed = value;
     var formatted = value;
     var errors = [];
 
     if (!(0, _lodash.isNil)(value) && value !== "") {
-      parsed = (0, _numeral2.default)(parsed.toString().trim()).value();
-      if ((0, _lodash.isNil)(parsed) || isNaN(parsed)) {
+      parsed = (0, _numeral2.default)(parsed.replace(/[$\s,]/g, "").trim()).value();
+      if (typeof parsed === "undefined" || parsed === null || isNaN(parsed)) {
         parsed = value;
-      } else if (parsed > 255 || parsed < 0) {
-        parsed = value;
-        errors.push("FormFormatters.rgbInvalid");
+        errors.push("FormFormatters.numberInvalid");
       } else {
-        formatted = parsed;
+        parsed = Math.round(parsed);
+        formatted = parsed.toString();
       }
     }
 
@@ -35,4 +34,4 @@ var RgbFormatter = {
   }
 };
 
-module.exports = RgbFormatter;
+module.exports = WholeFormatter;

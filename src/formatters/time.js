@@ -1,27 +1,24 @@
 import Moment from "moment";
-import StrFormatter from "./string";
+import { isNil } from "lodash";
 
 const TimeFormatter = {
-  timeFormat: "h:mm a",
-
   format(value, options = {}) {
-    let{valid, parsed, formatted, errors} = StrFormatter.format(value, options);
+    let parsed = value;
+    let formatted = value;
+    let errors = [];
 
-    if(valid && parsed.length > 0) {
+    if(!isNil(value) && value !== "") {
       let temp = Moment(parsed, "hh:mm:ss a");
       if(temp.isValid()) {
-        formatted = temp.format(this.timeFormat);
+        formatted = temp.format("h:mm a");
         parsed = formatted;
       } else {
-        valid = false;
-        formatted = "";
-        parsed = "";
         errors.push("FormFormatters.timeInvalid");
       }
     }
 
     return({
-      valid,
+      valid: errors.length === 0,
       parsed,
       formatted,
       errors

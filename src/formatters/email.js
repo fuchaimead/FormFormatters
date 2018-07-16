@@ -1,22 +1,22 @@
-import StrFormatter from "./string";
+import { isNil } from "lodash";
 
 const EmailFormatter = {
-  format(value, options = {}) {
-    let{valid, parsed, formatted, errors} = StrFormatter.format(value, options);
+  format(value) {
+    let parsed = value;
+    let formatted = value;
+    let errors = [];
 
-    parsed = parsed.toLowerCase();
-    formatted = formatted.toLowerCase();
-    if(valid && parsed.length > 0) {
+    if(!isNil(value) && value !== "") {
+      parsed = parsed.toString().toLowerCase().trim();
+      formatted = formatted.toString().toLowerCase().trim();
       // remove all non-digits
-      let emailRegex = /^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\.[A-Za-z]+$/;
-      valid = emailRegex.test(formatted);
-      if(!valid) {
+      if(!/^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\.[A-Za-z]+$/.test(formatted)) {
         errors.push("FormFormatters.emailInvalid");
       }
     }
 
     return({
-      valid,
+      valid: errors.length === 0,
       parsed,
       formatted,
       errors

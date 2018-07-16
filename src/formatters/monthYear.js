@@ -12,7 +12,7 @@ const DateFormatter = {
       if(temp.isValid()) {
         // store parsed value as just the date portion.
         parsed = temp.format("YYYY-MM-DD");
-        formatted = temp.format("MMM D, YYYY");
+        formatted = temp.format("MMM YYYY");
       } else {
         errors.push("FormFormatters.dateInvalid");
       }

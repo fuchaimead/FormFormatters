@@ -1,32 +1,29 @@
-import numeral from "numeral";
-import StrFormatter from "./string";
-import { merge, isEmpty, trim } from "lodash";
+import Numeral from "numeral";
+import { isNil } from "lodash";
 
 const PercentFormatter = {
-  format(value, options = {}) {
-    options = merge({}, {format: "decimal"}, options);
-    let{valid, parsed, formatted, errors} = StrFormatter.format(value, options);
+  format(value) {
+    let parsed = value;
+    let formatted = value;
+    let errors = [];
 
-    if(!isEmpty(parsed)) {
-      let numObj = numeral(trim(parsed.replace(/[$\s,%]/g, "")));
+    if(!isNil(value) && value !== "") {
+      let numObj = Numeral(parsed.toString().replace(/[$\s,%]/g, "").trim());
       parsed = numObj.value();
-      if(typeof(parsed) === "undefined" || parsed === null) {
+      if(typeof(parsed) === "undefined" || parsed === null || isNaN(parsed)) {
         parsed = value;
-        formatted = value;
-        valid = false;
-        errors.push("FormFormatters.required");
+        errors.push("FormFormatters.numberInvalid");
       } else {
-        if(options.format === "decimal") {
-          formatted = numObj.format("0,0.00");
+        if(parsed % 1 === 0) {
+          formatted = numObj.format("0,0") + "%";
         } else {
-          formatted = numObj.format("0,0");
+          formatted = numObj.format("0,0.00") + "%";
         }
-        formatted = formatted + "%";
       }
     }
 
     return({
-      valid,
+      valid: errors.length === 0,
       parsed,
       formatted,
       errors

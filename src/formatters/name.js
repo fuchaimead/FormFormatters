@@ -1,12 +1,14 @@
-import StrFormatter from "./string";
+import { isNil } from "lodash";
 
 const NameFormatter = {
-  format(value, options = {}) {
-    let{valid, parsed, formatted, errors} = StrFormatter.format(value, options);
+  format(value) {
+    let parsed = value;
+    let formatted = value;
+    let errors = [];
 
-    parsed = parsed.toLowerCase();
-    formatted = formatted.toLowerCase();
-    if(valid && parsed.length > 0) {
+    if(!isNil(value) && value !== "") {
+      parsed = parsed.toString().toLowerCase().trim();
+      formatted = formatted.toString().toLowerCase().trim();
       let arr = parsed.split(" ").map((item) => {
         return(item.charAt(0).toUpperCase() + item.slice(1));
       });
@@ -15,7 +17,7 @@ const NameFormatter = {
     }
 
     return({
-      valid,
+      valid: errors.length === 0,
       parsed,
       formatted,
       errors

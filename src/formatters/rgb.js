@@ -1,28 +1,26 @@
-import numeral from "numeral";
-import NumberFormatter from "./number";
+import Numeral from "numeral";
+import { isNil } from "lodash";
 
 const RgbFormatter = {
-  format(value, options = {}) {
-    let{valid, parsed, formatted, errors} = NumberFormatter.format(value, options);
+  format(value) {
+    let parsed = value;
+    let formatted = value;
+    let errors = [];
 
-    if(valid && parsed !== "") {
-      let numObj = numeral(parsed);
-      parsed = numObj.value();
-      if(typeof(parsed) === "undefined" || parsed === null) {
-        parsed = value || "";
-        formatted = value || "";
-        if(options.required && valid) {
-          valid = false;
-          errors.push("FormFormatters.required");
-        }
+    if(!isNil(value) && value !== "") {
+      parsed = Numeral(parsed.toString().trim()).value();
+      if(isNil(parsed) || isNaN(parsed)) {
+        parsed = value;
       } else if(parsed > 255 || parsed < 0) {
-        valid = false;
+        parsed = value;
         errors.push("FormFormatters.rgbInvalid");
+      } else {
+        formatted = parsed;
       }
     }
 
     return({
-      valid,
+      valid: errors.length === 0,
       parsed,
       formatted,
       errors

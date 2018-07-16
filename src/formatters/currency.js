@@ -1,33 +1,25 @@
-import { isNil } from "lodash";
 import Numeral from "numeral";
-import NumberFormatter from "./number";
+import { isEmpty, isNil } from "lodash";
 
 const CurrencyFormatter = {
-  format(value, options = {}) {
-    if(isNil(options["format"])) {
-      options["format"] = "cents";
-    }
-    let{valid, parsed, formatted, errors} = NumberFormatter.format(value, options);
+  format(value) {
+    let parsed = value;
+    let formatted = value;
+    let errors = [];
 
-    if(valid && parsed !== "") {
-      let numObj = Numeral(parsed);
-      parsed = numObj.value();
-      if(typeof(parsed) === "undefined" || parsed === null) {
-        parsed = value || "";
-        formatted = value || "";
-        if(options.required && valid) {
-          valid = false;
-          errors.push("FormFormatters.required");
-        }
-      }
-      formatted = numObj.format("0,0.00");
-      if(options.format === "dollars") {
-        formatted = numObj.format("0,0");
+    if(!isNil(value) && !isEmpty(value)) {
+      let numObj = Numeral(parsed.replace(/[$\s,]/g, "").trim());
+      parsed = numObj.value()
+      if(typeof(parsed) === "undefined" || parsed === null || isNaN(parsed)) {
+        parsed = value;
+        errors.push("FormFormatters.numberInvalid");
+      } else {
+        formatted = numObj.format("0,0.00");
       }
     }
 
     return({
-      valid,
+      valid: errors.length === 0,
       parsed,
       formatted,
       errors

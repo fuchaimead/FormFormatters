@@ -1,18 +1,19 @@
-import Numeral from "numeral";
+import numeral from "numeral";
 import { isNil } from "lodash";
 
-const NumberFormatter = {
+const WholeFormatter = {
   format(value) {
     let parsed = value;
     let formatted = value;
     let errors = [];
 
     if(!isNil(value) && value !== "") {
-      parsed = Numeral(parsed.toString().replace(/[$\s,]/g, "").trim()).value();
+      parsed = numeral(parsed.replace(/[$\s,]/g, "").trim()).value();
       if(typeof(parsed) === "undefined" || parsed === null || isNaN(parsed)) {
         parsed = value;
         errors.push("FormFormatters.numberInvalid");
       } else {
+        parsed = Math.round(parsed);
         formatted = parsed.toString();
       }
     }
@@ -26,4 +27,4 @@ const NumberFormatter = {
   }
 };
 
-module.exports = NumberFormatter;
+module.exports = WholeFormatter;

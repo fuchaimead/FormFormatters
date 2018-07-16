@@ -1,15 +1,16 @@
-import StrFormatter from "./string";
+import { isNil } from "lodash";
 
 const SSNFormatter = {
   format(value, options = {}) {
-    let{valid, parsed, formatted, errors} = StrFormatter.format(value, options);
+    let parsed = value;
+    let formatted = value;
+    let errors = [];
 
-    if(valid && parsed.length > 0) {
+    if(!isNil(value) && value !== "") {
       // remove all non-digits
-      parsed = parsed.replace(/\D/g, "");
+      parsed = parsed.toString().replace(/\D/g, "");
       formatted = parsed.replace(/^(\d{3})(\d{2})(\d{4})$/, "$1-$2-$3");
       if(parsed.length !== 9) {
-        valid = false;
         parsed = value;
         formatted = value;
         errors.push("FormFormatters.ssnInvalid");
@@ -17,7 +18,7 @@ const SSNFormatter = {
     }
 
     return({
-      valid,
+      valid: errors.length === 0,
       parsed,
       formatted,
       errors

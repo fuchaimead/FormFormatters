@@ -1,4 +1,4 @@
-import formatter from "../../src/formatters/number";
+import formatter from "../../src/formatters/whole";
 import test from "ava";
 
 test("converts null", t => {
@@ -31,8 +31,17 @@ test("trims white space", t => {
 test("handles letters", t => {
   t.deepEqual(formatter.format("111asdf222333.23"), {
     errors: [],
-    formatted: "111222333.23",
-    parsed: 111222333.23,
+    formatted: "111222333",
+    parsed: 111222333,
+    valid: true
+  });
+});
+
+test("rounds up", t => {
+  t.deepEqual(formatter.format("111222333.99"), {
+    errors: [],
+    formatted: "111222334",
+    parsed: 111222334,
     valid: true
   });
 });

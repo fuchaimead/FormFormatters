@@ -1,6 +1,10 @@
 import mask from "../../src/masks/email";
 import test from "ava";
 
+test("handles nulls", t => {
+  t.deepEqual(mask.mask(null), null);
+});
+
 test("allows white space", t => {
   t.deepEqual(mask.mask(" test@test.com "), " test@test.com ");
 });

@@ -1,6 +1,8 @@
+import { isNil } from "lodash";
+
 const NumberMask = {
   mask(value) {
-    return(value.toString().replace(/[^0-9,.]+/g, ""));
+    return(isNil(value) ? null : value.toString().replace(/[^0-9,.]+/g, ""));
   }
 };
 

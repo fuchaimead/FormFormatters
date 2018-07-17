@@ -1,6 +1,10 @@
 import mask from "../../src/masks/creditCard";
 import test from "ava";
 
+test("handles nulls", t => {
+  t.deepEqual(mask.mask(null), null);
+});
+
 test("trims white space", t => {
   t.deepEqual(mask.mask(" 1234 5678 9012 3456 "), " 1234 5678 9012 3456 ");
 });

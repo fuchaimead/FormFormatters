@@ -1,9 +1,11 @@
 "use strict";
 
-var StringMask = {
+var _lodash = require("lodash");
+
+var SsnMask = {
   mask: function mask(value) {
-    return value.replace(/[^0-9-\s]+/g, "");
+    return (0, _lodash.isNil)(value) ? null : value.toString().replace(/[^0-9-\s]+/g, "");
   }
 };
 
-module.exports = StringMask;
+module.exports = SsnMask;

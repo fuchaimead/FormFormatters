@@ -1,6 +1,8 @@
+import { isNil } from "lodash";
+
 const HexMask = {
   mask(value) {
-    return(value.toUpperCase().replace(/[^#A-F0-9]+/g, ""));
+    return(isNil(value) ? null : value.toString().toUpperCase().replace(/[^#A-F0-9]+/g, ""));
   }
 };
 

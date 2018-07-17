@@ -1,6 +1,8 @@
+import { isNil } from "lodash";
+
 const StringMask = {
   mask(value) {
-    return(value.replace(/[^0-9.%]+/g, ""));
+    return(isNil(value) ? null : value.toString().replace(/[^0-9.%]+/g, ""));
   }
 };
 

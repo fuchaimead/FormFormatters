@@ -1,7 +1,9 @@
-const StringMask = {
+import { isNil } from "lodash";
+
+const SsnMask = {
   mask(value) {
-    return(value.replace(/[^0-9-\s]+/g, ""));
+    return(isNil(value) ? null : value.toString().replace(/[^0-9-\s]+/g, ""));
   }
 };
 
-module.exports = StringMask;
+module.exports = SsnMask;

@@ -1,6 +1,8 @@
+import { isNil } from "lodash";
+
 const EmailMask = {
   mask(value) {
-    return(value.toLowerCase());
+    return(isNil(value) ? null : value.toString().toLowerCase());
   }
 };
 

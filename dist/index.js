@@ -1,6 +1,8 @@
 "use strict";
 
 module.exports = {
+  ArrayFormatter: require("./formatters/array"),
+  ArrayMask: require("./masks/array"),
   CreditCardFormatter: require("./formatters/creditCard"),
   CreditCardMask: require("./masks/creditCard"),
   CurrencyFormatter: require("./formatters/currency"),

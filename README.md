@@ -34,6 +34,7 @@ The mask will return in the the same format as the entry. In other words, it wil
 
 ## Formatters
 
+- ArrayFormatter
 - CurrencyFormatter
 - DateFormatter
 - EmailFormatter
@@ -49,10 +50,12 @@ The mask will return in the the same format as the entry. In other words, it wil
 
 ## Masks
 
+- ArrayMask
 - CurrencyMask
 - DecimalMask
 - EmailMask
 - HexMask
+- NumberMask
 - PercentMask
 - PhoneMask
 - SsnMask
@@ -62,6 +65,15 @@ The mask will return in the the same format as the entry. In other words, it wil
 - WholeNumberMask
 
 ## Releases
+
+v1.0.2
+
+Added Array formatter and Array Mask
+
+v1.0.1
+
+Added Number mask
+
 
 v0.4.1
 

@@ -1,8 +1,5 @@
-import { isNil } from "lodash";
-
 const ArrayFormatter = {
   format(value) {
-
     let formatted = value;
     let parsed = value;
     let errors = [];

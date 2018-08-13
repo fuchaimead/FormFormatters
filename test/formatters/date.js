@@ -1,8 +1,8 @@
-import formatter from "../../src/formatters/date";
+import { DateFormatter } from "../../src";
 import test from "ava";
 
 test("converts null", t => {
-  t.deepEqual(formatter.format(null), {
+  t.deepEqual(DateFormatter({errors: [], valid: true, formatted: null, parsed: null}), {
     errors: [],
     formatted: null,
     parsed: null,
@@ -11,7 +11,7 @@ test("converts null", t => {
 });
 
 test("returns an error if required", t => {
-  t.deepEqual(formatter.format(""), {
+  t.deepEqual(DateFormatter({errors: [], valid: true, formatted: "", parsed: ""}), {
     errors: [],
     formatted: "",
     parsed: "",
@@ -20,7 +20,7 @@ test("returns an error if required", t => {
 });
 
 test("does not return an error if not required", t => {
-  t.deepEqual(formatter.format(""), {
+  t.deepEqual(DateFormatter({errors: [], valid: true, formatted: "", parsed: ""}), {
     errors: [],
     formatted: "",
     parsed: "",
@@ -29,7 +29,7 @@ test("does not return an error if not required", t => {
 });
 
 test("converts number", t => {
-  t.deepEqual(formatter.format(23), {
+  t.deepEqual(DateFormatter({errors: [], valid: true, formatted: 23, parsed: 23}), {
     errors: [],
     formatted: "Jan 1, 2023",
     parsed: "2023-01-01",
@@ -38,7 +38,7 @@ test("converts number", t => {
 });
 
 test("trims white space", t => {
-  t.deepEqual(formatter.format(" 1112223333 "), {
+  t.deepEqual(DateFormatter({errors: [], valid: true, formatted: " 1112223333 ", parsed: " 1112223333 "}), {
     errors: [],
     formatted: "Nov 12, 2233",
     parsed: "2233-11-12",
@@ -47,7 +47,7 @@ test("trims white space", t => {
 });
 
 test("formats dates", t => {
-  t.deepEqual(formatter.format("5-5-14"), {
+  t.deepEqual(DateFormatter({errors: [], valid: true, formatted: "5-5-14", parsed: "5-5-14"}), {
     errors: [],
     formatted: "May 5, 2014",
     parsed: "2014-05-05",
@@ -56,7 +56,7 @@ test("formats dates", t => {
 });
 
 test("formats MMDDYYYY", t => {
-  t.deepEqual(formatter.format("05052014"), {
+  t.deepEqual(DateFormatter({errors: [], valid: true, formatted: "05052014", parsed: "05052014"}), {
     errors: [],
     formatted: "May 5, 2014",
     parsed: "2014-05-05",
@@ -65,7 +65,7 @@ test("formats MMDDYYYY", t => {
 });
 
 test("formats MMM YYYY", t => {
-  t.deepEqual(formatter.format("May 2014"), {
+  t.deepEqual(DateFormatter({errors: [], valid: true, formatted: "May 2014", parsed: "May 2014"}), {
     errors: [],
     formatted: "May 1, 2014",
     parsed: "2014-05-01",
@@ -74,7 +74,7 @@ test("formats MMM YYYY", t => {
 });
 
 test("formats MMM DD YYYY", t => {
-  t.deepEqual(formatter.format("May 5 2014"), {
+  t.deepEqual(DateFormatter({errors: [], valid: true, formatted: "May 5 2014", parsed: "May 5 2014"}), {
     errors: [],
     formatted: "May 5, 2014",
     parsed: "2014-05-05",
@@ -83,7 +83,7 @@ test("formats MMM DD YYYY", t => {
 });
 
 test("formats MMM DD YYYY h:mm", t => {
-  t.deepEqual(formatter.format("May 5 2014 12:00"), {
+  t.deepEqual(DateFormatter({errors: [], valid: true, formatted: "May 5 2014 12:00", parsed: "May 5 2014 12:00"}), {
     errors: [],
     formatted: "May 5, 2014",
     parsed: "2014-05-05",
@@ -92,7 +92,7 @@ test("formats MMM DD YYYY h:mm", t => {
 });
 
 test("does not handle errors", t => {
-  t.deepEqual(formatter.format("abc"), {
+  t.deepEqual(DateFormatter({errors: [], valid: true, formatted: "abc", parsed: "abc"}), {
     errors: ["FormFormatters.dateInvalid"],
     formatted: "abc",
     parsed: "abc",

@@ -1,8 +1,8 @@
-import formatter from "../../src/formatters/required";
 import test from "ava";
+import { RequiredFormatter } from "../../src/";
 
 test("null fails", t => {
-  t.deepEqual(formatter.format(null), {
+  t.deepEqual(RequiredFormatter({valid: true, errors: [], formatted: null, parsed: null}), {
     errors: ["FormFormatters.required"],
     formatted: null,
     parsed: null,
@@ -11,7 +11,7 @@ test("null fails", t => {
 });
 
 test("empty string fails", t => {
-  t.deepEqual(formatter.format(""), {
+  t.deepEqual(RequiredFormatter({valid: true, errors: [], formatted: "", parsed: ""}), {
     errors: ["FormFormatters.required"],
     formatted: "",
     parsed: "",
@@ -20,7 +20,7 @@ test("empty string fails", t => {
 });
 
 test("handles number", t => {
-  t.deepEqual(formatter.format(1112223333), {
+  t.deepEqual(RequiredFormatter({valid: true, errors: [], formatted: 1112223333, parsed: 1112223333}), {
     errors: [],
     formatted: 1112223333,
     parsed: 1112223333,
@@ -29,7 +29,7 @@ test("handles number", t => {
 });
 
 test("handles zero", t => {
-  t.deepEqual(formatter.format(0), {
+  t.deepEqual(RequiredFormatter({valid: true, errors: [], formatted: 0, parsed: 0}), {
     errors: [],
     formatted: 0,
     parsed: 0,
@@ -38,7 +38,7 @@ test("handles zero", t => {
 });
 
 test("handles string", t => {
-  t.deepEqual(formatter.format(" 1112223333 "), {
+  t.deepEqual(RequiredFormatter({valid: true, errors: [], formatted: " 1112223333 ", parsed: " 1112223333 "}), {
     errors: [],
     formatted: " 1112223333 ",
     parsed: " 1112223333 ",
@@ -47,7 +47,7 @@ test("handles string", t => {
 });
 
 test("handles letters", t => {
-  t.deepEqual(formatter.format("111asdf222333.23"), {
+  t.deepEqual(RequiredFormatter({valid: true, errors: [], formatted: "111asdf222333.23", parsed: "111asdf222333.23"}), {
     errors: [],
     formatted: "111asdf222333.23",
     parsed: "111asdf222333.23",

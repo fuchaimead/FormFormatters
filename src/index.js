@@ -1,7 +1,11 @@
+import ArrayFormatter from "./formatters/array";
+import CreditCardFormatter from "./formatters/creditCard";
+import RequiredFormatter from "./formatters/required";
+
 module.exports = {
-  ArrayFormatter: require("./formatters/array"),
+  ArrayFormatter: ArrayFormatter,
   ArrayMask: require("./masks/array"),
-  CreditCardFormatter: require("./formatters/creditCard"),
+  CreditCardFormatter: CreditCardFormatter,
   CreditCardMask: require("./masks/creditCard"),
   CurrencyFormatter: require("./formatters/currency"),
   CurrencyMask: require("./masks/currency"),
@@ -20,7 +24,7 @@ module.exports = {
   PercentMask: require("./masks/percent"),
   PhoneFormatter: require("./formatters/phone"),
   PhoneMask: require("./masks/phone"),
-  RequiredFormatter: require("./formatters/required"),
+  RequiredFormatter: RequiredFormatter,
   RgbFormatter: require("./formatters/rgb"),
   SsnFormatter: require("./formatters/ssn"),
   SsnMask: require("./masks/ssn"),

@@ -1,8 +1,8 @@
-import formatter from "../../src/formatters/hex";
+import { HexFormatter } from "../../src";
 import test from "ava";
 
 test("accepts null", t => {
-  t.deepEqual(formatter.format(null), {
+  t.deepEqual(HexFormatter({errors: [], valid: true, formatted: null, parsed: null}), {
     errors: [],
     formatted: null,
     parsed: null,
@@ -11,7 +11,7 @@ test("accepts null", t => {
 });
 
 test("does not return an error if empty string", t => {
-  t.deepEqual(formatter.format(""), {
+  t.deepEqual(HexFormatter({errors: [], valid: true, formatted: "", parsed: ""}), {
     errors: [],
     formatted: "",
     parsed: "",
@@ -20,7 +20,7 @@ test("does not return an error if empty string", t => {
 });
 
 test("number", t => {
-  t.deepEqual(formatter.format(666666), {
+  t.deepEqual(HexFormatter({errors: [], valid: true, formatted: 666666, parsed: 666666}), {
     errors: [],
     formatted: "#666666",
     parsed: "#666666",
@@ -29,7 +29,7 @@ test("number", t => {
 });
 
 test("trims white space", t => {
-  t.deepEqual(formatter.format(" 666666 "), {
+  t.deepEqual(HexFormatter({errors: [], valid: true, formatted: " 666666 ", parsed: " 666666 "}), {
     errors: [],
     formatted: "#666666",
     parsed: "#666666",
@@ -38,7 +38,7 @@ test("trims white space", t => {
 });
 
 test("accepts hash tag", t => {
-  t.deepEqual(formatter.format("#666666"), {
+  t.deepEqual(HexFormatter({errors: [], valid: true, formatted: "#666666", parsed: "#666666"}), {
     errors: [],
     formatted: "#666666",
     parsed: "#666666",
@@ -47,7 +47,7 @@ test("accepts hash tag", t => {
 });
 
 test("invalid", t => {
-  t.deepEqual(formatter.format("#00FFF"), {
+  t.deepEqual(HexFormatter({errors: [], valid: true, formatted: "#00FFF", parsed: "#00FFF"}), {
     errors: ["FormFormatters.hexInvalid"],
     formatted: "#00FFF",
     parsed: "#00FFF",

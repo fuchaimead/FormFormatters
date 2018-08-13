@@ -3,6 +3,7 @@ import CreditCardFormatter from "./formatters/creditCard";
 import CurrencyFormatter from "./formatters/currency";
 import DateFormatter from "./formatters/date";
 import EmailFormatter from "./formatters/email";
+import HexFormatter from "./formatters/hex";
 import RequiredFormatter from "./formatters/required";
 
 module.exports = {
@@ -17,7 +18,7 @@ module.exports = {
   EmailFormatter: EmailFormatter,
   EmailMask: require("./masks/email"),
   EnglishTranslation: require("./utils/translations/en"),
-  HexFormatter: require("./formatters/hex"),
+  HexFormatter: HexFormatter,
   HexMask: require("./masks/hex"),
   MonthYearFormatter: require("./formatters/monthYear"),
   NameFormatter: require("./formatters/name"),

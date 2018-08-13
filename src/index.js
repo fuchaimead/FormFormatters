@@ -5,6 +5,7 @@ import DateFormatter from "./formatters/date";
 import EmailFormatter from "./formatters/email";
 import HexFormatter from "./formatters/hex";
 import MonthYearFormatter from "./formatters/monthYear";
+import NameFormatter from "./formatters/name";
 import RequiredFormatter from "./formatters/required";
 
 module.exports = {
@@ -22,7 +23,7 @@ module.exports = {
   HexFormatter: HexFormatter,
   HexMask: require("./masks/hex"),
   MonthYearFormatter: MonthYearFormatter,
-  NameFormatter: require("./formatters/name"),
+  NameFormatter: NameFormatter,
   NumberFormatter: require("./formatters/number"),
   NumberMask: require("./masks/number"),
   PercentFormatter: require("./formatters/percent"),

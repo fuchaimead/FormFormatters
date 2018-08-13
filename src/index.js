@@ -1,5 +1,6 @@
 import ArrayFormatter from "./formatters/array";
 import CreditCardFormatter from "./formatters/creditCard";
+import CurrencyFormatter from "./formatters/currency";
 import RequiredFormatter from "./formatters/required";
 
 module.exports = {
@@ -7,7 +8,7 @@ module.exports = {
   ArrayMask: require("./masks/array"),
   CreditCardFormatter: CreditCardFormatter,
   CreditCardMask: require("./masks/creditCard"),
-  CurrencyFormatter: require("./formatters/currency"),
+  CurrencyFormatter: CurrencyFormatter,
   CurrencyMask: require("./masks/currency"),
   DecimalMask: require("./masks/decimal"),
   DateFormatter: require("./formatters/date"),

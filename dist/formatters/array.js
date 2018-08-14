@@ -1,18 +1,9 @@
 "use strict";
 
-var ArrayFormatter = {
-  format: function format(value) {
-    var formatted = value;
-    var parsed = value;
-    var errors = [];
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-    return {
-      valid: true,
-      parsed: parsed,
-      formatted: formatted,
-      errors: errors
-    };
-  }
+exports.default = function (value) {
+  return value;
 };
-
-module.exports = ArrayFormatter;

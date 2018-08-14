@@ -1,6 +1,7 @@
 import ArrayFormatter from "./formatters/array";
 import CreditCardFormatter from "./formatters/creditCard";
 import CurrencyFormatter from "./formatters/currency";
+import DateConverter from "./converters/date";
 import DateFormatter from "./formatters/date";
 import EmailFormatter from "./formatters/email";
 import HexFormatter from "./formatters/hex";
@@ -10,6 +11,7 @@ import NumberFormatter from "./formatters/number";
 import PercentFormatter from "./formatters/percent";
 import PhoneFormatter from "./formatters/phone";
 import RequiredFormatter from "./formatters/required";
+import RgbFormatter from "./formatters/rgb";
 import SsnFormatter from "./formatters/ssn";
 
 module.exports = {
@@ -20,6 +22,7 @@ module.exports = {
   CurrencyFormatter: CurrencyFormatter,
   CurrencyMask: require("./masks/currency"),
   DecimalMask: require("./masks/decimal"),
+  DateConverter: DateConverter,
   DateFormatter: DateFormatter,
   EmailFormatter: EmailFormatter,
   EmailMask: require("./masks/email"),
@@ -35,7 +38,7 @@ module.exports = {
   PhoneFormatter: PhoneFormatter,
   PhoneMask: require("./masks/phone"),
   RequiredFormatter: RequiredFormatter,
-  RgbFormatter: require("./formatters/rgb"),
+  RgbFormatter: RgbFormatter,
   SsnFormatter: SsnFormatter,
   SsnMask: require("./masks/ssn"),
   SsnLastFourFormatter: require("./formatters/ssnLastFour"),

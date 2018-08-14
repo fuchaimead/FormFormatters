@@ -1,8 +1,8 @@
-import formatter from "../../src/formatters/name";
+import { NameFormatter } from "../../src";
 import test from "ava";
 
 test("converts null", t => {
-  t.deepEqual(formatter.format(null), {
+  t.deepEqual(NameFormatter({errors: [], valid: true, formatted: null, parsed: null}), {
     errors: [],
     formatted: null,
     parsed: null,
@@ -11,7 +11,7 @@ test("converts null", t => {
 });
 
 test("does not return an error if empty string", t => {
-  t.deepEqual(formatter.format(""), {
+  t.deepEqual(NameFormatter({errors: [], valid: true, formatted: "", parsed: ""}), {
     errors: [],
     formatted: "",
     parsed: "",
@@ -20,7 +20,7 @@ test("does not return an error if empty string", t => {
 });
 
 test("accepts valid name", t => {
-  t.deepEqual(formatter.format("Bob Smith"), {
+  t.deepEqual(NameFormatter({errors: [], valid: true, formatted: "Bob Smith", parsed: "Bob Smith"}), {
     errors: [],
     formatted: "Bob Smith",
     parsed: "Bob Smith",
@@ -29,7 +29,7 @@ test("accepts valid name", t => {
 });
 
 test("trims whitespace", t => {
-  t.deepEqual(formatter.format(" Bob Smith "), {
+  t.deepEqual(NameFormatter({errors: [], valid: true, formatted: " Bob Smith ", parsed: " Bob Smith "}), {
     errors: [],
     formatted: "Bob Smith",
     parsed: "Bob Smith",
@@ -38,7 +38,7 @@ test("trims whitespace", t => {
 });
 
 test("catches lowercase names", t => {
-  t.deepEqual(formatter.format("merle juanita van oster"), {
+  t.deepEqual(NameFormatter({errors: [], valid: true, formatted: "merle jaunita van oster", parsed: "merle juanita van oster"}), {
     errors: [],
     formatted: "Merle Juanita Van Oster",
     parsed: "Merle Juanita Van Oster",

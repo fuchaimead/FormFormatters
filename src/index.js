@@ -10,6 +10,7 @@ import NumberFormatter from "./formatters/number";
 import PercentFormatter from "./formatters/percent";
 import PhoneFormatter from "./formatters/phone";
 import RequiredFormatter from "./formatters/required";
+import RgbFormatter from "./formatters/rgb";
 
 module.exports = {
   ArrayFormatter: ArrayFormatter,
@@ -34,7 +35,7 @@ module.exports = {
   PhoneFormatter: PhoneFormatter,
   PhoneMask: require("./masks/phone"),
   RequiredFormatter: RequiredFormatter,
-  RgbFormatter: require("./formatters/rgb"),
+  RgbFormatter: RgbFormatter,
   SsnFormatter: require("./formatters/ssn"),
   SsnMask: require("./masks/ssn"),
   SsnLastFourFormatter: require("./formatters/ssnLastFour"),

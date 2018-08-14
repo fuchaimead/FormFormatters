@@ -1,8 +1,8 @@
-import formatter from "../../src/formatters/currency";
+import { CurrencyFormatter } from "../../src";
 import test from "ava";
 
 test("converts null", t => {
-  t.deepEqual(formatter.format(null), {
+  t.deepEqual(CurrencyFormatter({errors: [], valid: true, formatted: null, parsed: null}), {
     errors: [],
     formatted: null,
     parsed: null,
@@ -11,7 +11,7 @@ test("converts null", t => {
 });
 
 test("returns a empty string", t => {
-  t.deepEqual(formatter.format(""), {
+  t.deepEqual(CurrencyFormatter({errors: [], valid: true, formatted: "", parsed: ""}), {
     errors: [],
     formatted: "",
     parsed: "",
@@ -20,7 +20,7 @@ test("returns a empty string", t => {
 });
 
 test("trims white space", t => {
-  t.deepEqual(formatter.format(" 1112223333 "), {
+  t.deepEqual(CurrencyFormatter({errors: [], valid: true, formatted: " 1112223333 ", parsed: " 1112223333 "}), {
     errors: [],
     formatted: "1,112,223,333.00",
     parsed: 1112223333,
@@ -29,7 +29,7 @@ test("trims white space", t => {
 });
 
 test("formats cents", t => {
-  t.deepEqual(formatter.format("$5.14"), {
+  t.deepEqual(CurrencyFormatter({errors: [], valid: true, formatted: "$5.14", parsed: "$5.14"}), {
     errors: [],
     formatted: "5.14",
     parsed: 5.14,
@@ -38,7 +38,7 @@ test("formats cents", t => {
 });
 
 test("formats cents", t => {
-  t.deepEqual(formatter.format("5"), {
+  t.deepEqual(CurrencyFormatter({errors: [], valid: true, formatted: "5", parsed: "5"}), {
     errors: [],
     formatted: "5.00",
     parsed: 5.00,
@@ -47,7 +47,7 @@ test("formats cents", t => {
 });
 
 test("(doesn't) handle errors", t => {
-  t.deepEqual(formatter.format("abc"), {
+  t.deepEqual(CurrencyFormatter({errors: [], valid: true, formatted: "abc", parsed: "abc"}), {
     errors: ["FormFormatters.numberInvalid"],
     formatted: "abc",
     parsed: "abc",

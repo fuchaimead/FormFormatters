@@ -1,8 +1,8 @@
-import formatter from "../../src/formatters/email";
+import { EmailFormatter } from "../../src";
 import test from "ava";
 
 test("accepts null", t => {
-  t.deepEqual(formatter.format(null), {
+  t.deepEqual(EmailFormatter({errors: [], valid: true, formatted: null, parsed: null}), {
     errors: [],
     formatted: null,
     parsed: null,
@@ -11,7 +11,7 @@ test("accepts null", t => {
 });
 
 test("does not return an error if empty string", t => {
-  t.deepEqual(formatter.format(""), {
+  t.deepEqual(EmailFormatter({errors: [], valid: true, formatted: "", parsed: ""}), {
     errors: [],
     formatted: "",
     parsed: "",
@@ -20,7 +20,7 @@ test("does not return an error if empty string", t => {
 });
 
 test("converts number", t => {
-  t.deepEqual(formatter.format(23), {
+  t.deepEqual(EmailFormatter({errors: [], valid: true, formatted: 23, parsed: 23}), {
     errors: ["FormFormatters.emailInvalid"],
     formatted: "23",
     parsed: "23",
@@ -29,7 +29,7 @@ test("converts number", t => {
 });
 
 test("accepts valid emails", t => {
-  t.deepEqual(formatter.format("bob@example.com"), {
+  t.deepEqual(EmailFormatter({errors: [], valid: true, formatted: "bob@example.com", parsed: "bob@example.com"}), {
     errors: [],
     formatted: "bob@example.com",
     parsed: "bob@example.com",
@@ -38,7 +38,7 @@ test("accepts valid emails", t => {
 });
 
 test("trims whitespace", t => {
-  t.deepEqual(formatter.format(" bob@example.com "), {
+  t.deepEqual(EmailFormatter({errors: [], valid: true, formatted: " bob@example.com ", parsed: " bob@example.com "}), {
     errors: [],
     formatted: "bob@example.com",
     parsed: "bob@example.com",
@@ -47,7 +47,7 @@ test("trims whitespace", t => {
 });
 
 test("catches invalid emails", t => {
-  t.deepEqual(formatter.format("bob@example. com "), {
+  t.deepEqual(EmailFormatter({errors: [], valid: true, formatted: "bob@example. com ", parsed: "bob@example. com"}), {
     errors: ["FormFormatters.emailInvalid"],
     formatted: "bob@example. com",
     parsed: "bob@example. com",

@@ -1,8 +1,8 @@
 import test from "ava";
-import formatter from "../../src/formatters/time";
+import { TimeFormatter } from "../../src";
 
 test("accepts null", t => {
-  t.deepEqual(formatter.format(null), {
+  t.deepEqual(TimeFormatter({errors: [], valid: true, formatted: null, parsed: null}), {
     errors: [],
     formatted: null,
     parsed: null,
@@ -11,7 +11,7 @@ test("accepts null", t => {
 });
 
 test("returns an error if required", t => {
-  t.deepEqual(formatter.format(""), {
+  t.deepEqual(TimeFormatter({errors: [], valid: true, formatted: "", parsed: ""}), {
     errors: [],
     formatted: "",
     parsed: "",
@@ -20,7 +20,7 @@ test("returns an error if required", t => {
 });
 
 test("does not return an error if empty string", t => {
-  t.deepEqual(formatter.format(""), {
+  t.deepEqual(TimeFormatter({errors: [], valid: true, formatted: "", parsed: ""}), {
     errors: [],
     formatted: "",
     parsed: "",
@@ -29,7 +29,7 @@ test("does not return an error if empty string", t => {
 });
 
 test("converts number", t => {
-  t.deepEqual(formatter.format(23), {
+  t.deepEqual(TimeFormatter({errors: [], valid: true, formatted: 23, parsed: 23}), {
     errors: [],
     formatted: "11:00 pm",
     parsed: "11:00 pm",
@@ -38,7 +38,7 @@ test("converts number", t => {
 });
 
 test("trims whteste space", t => {
-  t.deepEqual(formatter.format(" 1112223333 "), {
+  t.deepEqual(TimeFormatter({errors: [], valid: true, formatted: " 1112223333 ", parsed: " 1112223333 "}), {
     errors: [],
     formatted: "11:12 am",
     parsed: "11:12 am",
@@ -47,7 +47,7 @@ test("trims whteste space", t => {
 });
 
 test("formats times", t => {
-  t.deepEqual(formatter.format("5"), {
+  t.deepEqual(TimeFormatter({errors: [], valid: true, formatted: "5", parsed: "5"}), {
     errors: [],
     formatted: "5:00 am",
     parsed: "5:00 am",
@@ -56,7 +56,7 @@ test("formats times", t => {
 });
 
 test("formats hh:mm", t => {
-  t.deepEqual(formatter.format("23:00"), {
+  t.deepEqual(TimeFormatter({errors: [], valid: true, formatted: "23:00", parsed: "23:00"}), {
     errors: [],
     formatted: "11:00 pm",
     parsed: "11:00 pm",
@@ -65,7 +65,7 @@ test("formats hh:mm", t => {
 });
 
 test("formats hh:mm a", t => {
-  t.deepEqual(formatter.format("7:00 pm"), {
+  t.deepEqual(TimeFormatter({errors: [], valid: true, formatted: "7:00 pm", parsed: "7:00 pm"}), {
     errors: [],
     formatted: "7:00 pm",
     parsed: "7:00 pm",
@@ -74,7 +74,7 @@ test("formats hh:mm a", t => {
 });
 
 test("does not handles errors", t => {
-  t.deepEqual(formatter.format("abc"), {
+  t.deepEqual(TimeFormatter({errors: [], valid: true, formatted: "abc", parsed: "abc"}), {
     errors: ["FormFormatters.timeInvalid"],
     formatted: "abc",
     parsed: "abc",

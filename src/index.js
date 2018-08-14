@@ -1,35 +1,56 @@
+import ArrayFormatter from "./formatters/array";
+import CreditCardFormatter from "./formatters/creditCard";
+import CurrencyFormatter from "./formatters/currency";
+import DateConverter from "./converters/date";
+import DateFormatter from "./formatters/date";
+import EmailFormatter from "./formatters/email";
+import HexFormatter from "./formatters/hex";
+import MonthYearFormatter from "./formatters/monthYear";
+import NameFormatter from "./formatters/name";
+import NumberFormatter from "./formatters/number";
+import PercentFormatter from "./formatters/percent";
+import PhoneFormatter from "./formatters/phone";
+import RequiredFormatter from "./formatters/required";
+import RgbFormatter from "./formatters/rgb";
+import SsnFormatter from "./formatters/ssn";
+import SsnLastFourFormatter from "./formatters/ssnLastFour";
+import StringFormatter from "./formatters/string";
+import TimeFormatter from "./formatters/time";
+import WholeNumberFormatter from "./formatters/whole";
+
 module.exports = {
-  ArrayFormatter: require("./formatters/array"),
+  ArrayFormatter: ArrayFormatter,
   ArrayMask: require("./masks/array"),
-  CreditCardFormatter: require("./formatters/creditCard"),
+  CreditCardFormatter: CreditCardFormatter,
   CreditCardMask: require("./masks/creditCard"),
-  CurrencyFormatter: require("./formatters/currency"),
+  CurrencyFormatter: CurrencyFormatter,
   CurrencyMask: require("./masks/currency"),
   DecimalMask: require("./masks/decimal"),
-  DateFormatter: require("./formatters/date"),
-  EmailFormatter: require("./formatters/email"),
+  DateConverter: DateConverter,
+  DateFormatter: DateFormatter,
+  EmailFormatter: EmailFormatter,
   EmailMask: require("./masks/email"),
   EnglishTranslation: require("./utils/translations/en"),
-  HexFormatter: require("./formatters/hex"),
+  HexFormatter: HexFormatter,
   HexMask: require("./masks/hex"),
-  MonthYearFormatter: require("./formatters/monthYear"),
-  NameFormatter: require("./formatters/name"),
-  NumberFormatter: require("./formatters/number"),
+  MonthYearFormatter: MonthYearFormatter,
+  NameFormatter: NameFormatter,
+  NumberFormatter: NumberFormatter,
   NumberMask: require("./masks/number"),
-  PercentFormatter: require("./formatters/percent"),
+  PercentFormatter: PercentFormatter,
   PercentMask: require("./masks/percent"),
-  PhoneFormatter: require("./formatters/phone"),
+  PhoneFormatter: PhoneFormatter,
   PhoneMask: require("./masks/phone"),
-  RequiredFormatter: require("./formatters/required"),
-  RgbFormatter: require("./formatters/rgb"),
-  SsnFormatter: require("./formatters/ssn"),
+  RequiredFormatter: RequiredFormatter,
+  RgbFormatter: RgbFormatter,
+  SsnFormatter: SsnFormatter,
   SsnMask: require("./masks/ssn"),
-  SsnLastFourFormatter: require("./formatters/ssnLastFour"),
+  SsnLastFourFormatter: SsnLastFourFormatter,
   SsnLastFourMask: require("./masks/ssnLastFour"),
-  StringFormatter: require("./formatters/string"),
+  StringFormatter: StringFormatter,
   StringMask: require("./masks/string"),
-  TimeFormatter: require("./formatters/time"),
+  TimeFormatter: TimeFormatter,
   TimeMask: require("./masks/time"),
-  WholeNumberFormatter: require("./formatters/whole"),
+  WholeNumberFormatter: WholeNumberFormatter,
   WholeNumberMask: require("./masks/wholeNumber")
 };

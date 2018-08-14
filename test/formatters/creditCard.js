@@ -1,8 +1,8 @@
 import test from "ava";
-import formatter from "../../src/formatters/creditCard";
+import { CreditCardFormatter } from "../../src";
 
 test("converts null", t => {
-  t.deepEqual(formatter.format(null), {
+  t.deepEqual(CreditCardFormatter({errors: [], valid: true, formatted: null, parsed: null}), {
     errors: [],
     formatted: null,
     parsed: null,
@@ -11,7 +11,7 @@ test("converts null", t => {
 });
 
 test("does not return an error if blank", t => {
-  t.deepEqual(formatter.format(""), {
+  t.deepEqual(CreditCardFormatter({errors: [], valid: true, formatted: "", parsed: ""}), {
     errors: [],
     formatted: "",
     parsed: "",
@@ -20,7 +20,7 @@ test("does not return an error if blank", t => {
 });
 
 test("converts number", t => {
-  t.deepEqual(formatter.format(23), {
+  t.deepEqual(CreditCardFormatter({errors: [], valid: true, formatted: 23, parsed: 23}), {
     errors: ["FormFormatters.creditCardInvalid"],
     formatted: 23,
     parsed: 23,
@@ -29,7 +29,7 @@ test("converts number", t => {
 });
 
 test("trims white space", t => {
-  t.deepEqual(formatter.format(" 1234 5678 9012 3456 "), {
+  t.deepEqual(CreditCardFormatter({errors: [], valid: true, formatted: " 1234 5678 9012 3456 ", parsed: " 1234 5678 9012 3456 "}), {
     errors: [],
     formatted: "1234 5678 9012 3456",
     parsed: "1234567890123456",
@@ -38,7 +38,7 @@ test("trims white space", t => {
 });
 
 test("formats strings", t => {
-  t.deepEqual(formatter.format("1111222233334444"), {
+  t.deepEqual(CreditCardFormatter({errors: [], valid: true, formatted: "1111222233334444", parsed: "1111222233334444"}), {
     errors: [],
     formatted: "1111 2222 3333 4444",
     parsed: "1111222233334444",
@@ -47,7 +47,7 @@ test("formats strings", t => {
 });
 
 test("formats strings with spaces", t => {
-  t.deepEqual(formatter.format("1111 2222 3333 4444"), {
+  t.deepEqual(CreditCardFormatter({errors: [], valid: true, formatted: "1111 2222 3333 4444", parsed: "1111 2222 3333 4444"}), {
     errors: [],
     formatted: "1111 2222 3333 4444",
     parsed: "1111222233334444",
@@ -56,7 +56,7 @@ test("formats strings with spaces", t => {
 });
 
 test("handles errors", t => {
-  t.deepEqual(formatter.format("11122333"), {
+  t.deepEqual(CreditCardFormatter({errors: [], valid: true, formatted: "11122333", parsed: "11122333"}), {
     errors: ["FormFormatters.creditCardInvalid"],
     formatted: "11122333",
     parsed: "11122333",
@@ -65,7 +65,7 @@ test("handles errors", t => {
 });
 
 test("is valid AMEX card starting with 34", t => {
-  t.deepEqual(formatter.format("3411 111111 11111"), {
+  t.deepEqual(CreditCardFormatter({errors: [], valid: true, formatted: "3411 111111 11111", parsed: "3411 111111 11111"}), {
     errors: [],
     formatted: "3411 111111 11111",
     parsed: "341111111111111",
@@ -74,7 +74,7 @@ test("is valid AMEX card starting with 34", t => {
 });
 
 test("is valid AMEX card starting with 37", t => {
-  t.deepEqual(formatter.format("3711 111111 11111"), {
+  t.deepEqual(CreditCardFormatter({errors: [], valid: true, formatted: "3711 111111 11111", parsed: "3711 111111 11111"}), {
     errors: [],
     formatted: "3711 111111 11111",
     parsed: "371111111111111",
@@ -83,7 +83,7 @@ test("is valid AMEX card starting with 37", t => {
 });
 
 test("is invalid AMEX card starting with 34", t => {
-  t.deepEqual(formatter.format("3411"), {
+  t.deepEqual(CreditCardFormatter({errors: [], valid: true, formatted: "3411", parsed: "3411"}), {
     errors: ["FormFormatters.amexCreditCardInvalid"],
     formatted: "3411",
     parsed: "3411",
@@ -92,7 +92,7 @@ test("is invalid AMEX card starting with 34", t => {
 });
 
 test("is invalid AMEX card starting with 37", t => {
-  t.deepEqual(formatter.format("3711"), {
+  t.deepEqual(CreditCardFormatter({errors: [], valid: true, formatted: "3711", parsed: "3711"}), {
     errors: ["FormFormatters.amexCreditCardInvalid"],
     formatted: "3711",
     parsed: "3711",

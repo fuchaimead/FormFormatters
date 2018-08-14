@@ -8,6 +8,7 @@ This library is designed translation of error messages. It will respond with uni
 
 Formatters take user input and return an object. For example if the user entered " 1112223333 " into a currency field. The response would be:
 
+Converters take a parsed value (from the api) and convert them into form usable values.
 ```json
 {
   errors: [],
@@ -63,6 +64,10 @@ The mask will return in the the same format as the entry. In other words, it wil
 - StringMask
 - TimeMask
 - WholeNumberMask
+
+## Converters
+
+- DateConverter
 
 ## Releases
 

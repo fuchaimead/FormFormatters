@@ -15,6 +15,7 @@ import RgbFormatter from "./formatters/rgb";
 import SsnFormatter from "./formatters/ssn";
 import SsnLastFourFormatter from "./formatters/ssnLastFour";
 import StringFormatter from "./formatters/string";
+import TimeFormatter from "./formatters/time";
 import WholeNumberFormatter from "./formatters/whole";
 
 module.exports = {
@@ -48,7 +49,7 @@ module.exports = {
   SsnLastFourMask: require("./masks/ssnLastFour"),
   StringFormatter: StringFormatter,
   StringMask: require("./masks/string"),
-  TimeFormatter: require("./formatters/time"),
+  TimeFormatter: TimeFormatter,
   TimeMask: require("./masks/time"),
   WholeNumberFormatter: WholeNumberFormatter,
   WholeNumberMask: require("./masks/wholeNumber")

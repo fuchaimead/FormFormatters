@@ -11,6 +11,7 @@ import NumberFormatter from "./formatters/number";
 import PercentFormatter from "./formatters/percent";
 import PhoneFormatter from "./formatters/phone";
 import RequiredFormatter from "./formatters/required";
+import StringFormatter from "./formatters/string";
 
 module.exports = {
   ArrayFormatter: ArrayFormatter,
@@ -41,7 +42,7 @@ module.exports = {
   SsnMask: require("./masks/ssn"),
   SsnLastFourFormatter: require("./formatters/ssnLastFour"),
   SsnLastFourMask: require("./masks/ssnLastFour"),
-  StringFormatter: require("./formatters/string"),
+  StringFormatter: StringFormatter,
   StringMask: require("./masks/string"),
   TimeFormatter: require("./formatters/time"),
   TimeMask: require("./masks/time"),

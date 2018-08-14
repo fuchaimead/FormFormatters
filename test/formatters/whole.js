@@ -1,8 +1,8 @@
-import formatter from "../../src/formatters/whole";
+import { WholeNumberFormatter } from "../../src";
 import test from "ava";
 
 test("converts null", t => {
-  t.deepEqual(formatter.format(null), {
+  t.deepEqual(WholeNumberFormatter({errors: [], valid: true, formatted: null, parsed: null}), {
     errors: [],
     formatted: null,
     parsed: null,
@@ -11,7 +11,7 @@ test("converts null", t => {
 });
 
 test("returns an empty string", t => {
-  t.deepEqual(formatter.format(""), {
+  t.deepEqual(WholeNumberFormatter({errors: [], valid: true, formatted: "", parsed: ""}), {
     errors: [],
     formatted: "",
     parsed: "",
@@ -20,7 +20,7 @@ test("returns an empty string", t => {
 });
 
 test("trims white space", t => {
-  t.deepEqual(formatter.format(" 1112223333 "), {
+  t.deepEqual(WholeNumberFormatter({errors: [], valid: true, formatted: " 1112223333 ", parsed: " 1112223333 "}), {
     errors: [],
     formatted: "1112223333",
     parsed: 1112223333,
@@ -29,7 +29,7 @@ test("trims white space", t => {
 });
 
 test("handles letters", t => {
-  t.deepEqual(formatter.format("111asdf222333.23"), {
+  t.deepEqual(WholeNumberFormatter({errors: [], valid: true, formatted: "111asdf222333.23", parsed: "111asdf222333.23"}), {
     errors: [],
     formatted: "111222333",
     parsed: 111222333,
@@ -38,7 +38,7 @@ test("handles letters", t => {
 });
 
 test("rounds up", t => {
-  t.deepEqual(formatter.format("111222333.99"), {
+  t.deepEqual(WholeNumberFormatter({errors: [], valid: true, formatted: "111222333.99", parsed: "111222333.99"}), {
     errors: [],
     formatted: "111222334",
     parsed: 111222334,
@@ -47,7 +47,7 @@ test("rounds up", t => {
 });
 
 test("handles errors", t => {
-  t.deepEqual(formatter.format("111.222333.23"), {
+  t.deepEqual(WholeNumberFormatter({errors: [], valid: true, formatted: "111.222333.23", parsed: "111.222333.23"}), {
     errors: ["FormFormatters.numberInvalid"],
     formatted: "111.222333.23",
     parsed: "111.222333.23",

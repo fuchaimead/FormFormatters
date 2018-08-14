@@ -1,8 +1,8 @@
-import formatter from "../../src/formatters/ssnLastFour";
+import { SsnLastFourFormatter } from "../../src";
 import test from "ava";
 
 test("accepts null", t => {
-  t.deepEqual(formatter.format(null), {
+  t.deepEqual(SsnLastFourFormatter({errors: [], valid: true, formatted: null, parsed: null}), {
     errors: [],
     formatted: null,
     parsed: null,
@@ -11,7 +11,7 @@ test("accepts null", t => {
 });
 
 test("does not return an error if empty string", t => {
-  t.deepEqual(formatter.format(""), {
+  t.deepEqual(SsnLastFourFormatter({errors: [], valid: true, formatted: "", parsed: ""}), {
     errors: [],
     formatted: "",
     parsed: "",
@@ -20,7 +20,7 @@ test("does not return an error if empty string", t => {
 });
 
 test("converts number", t => {
-  t.deepEqual(formatter.format(23), {
+  t.deepEqual(SsnLastFourFormatter({errors: [], valid: true, formatted: 23, parsed: 23}), {
     errors: ["FormFormatters.last4Invalid"],
     formatted: 23,
     parsed: 23,
@@ -29,7 +29,7 @@ test("converts number", t => {
 });
 
 test("valid", t => {
-  t.deepEqual(formatter.format("1234"), {
+  t.deepEqual(SsnLastFourFormatter({errors: [], valid: true, formatted: "1234", parsed: "1234"}), {
     errors: [],
     formatted: "1234",
     parsed: "1234",
@@ -38,7 +38,7 @@ test("valid", t => {
 });
 
 test("valid number", t => {
-  t.deepEqual(formatter.format(1234), {
+  t.deepEqual(SsnLastFourFormatter({errors: [], valid: true, formatted: 1234, parsed: 1234}), {
     errors: [],
     formatted: "1234",
     parsed: "1234",
@@ -47,7 +47,7 @@ test("valid number", t => {
 });
 
 test("trims whitespace", t => {
-  t.deepEqual(formatter.format(" 1234 "), {
+  t.deepEqual(SsnLastFourFormatter({errors: [], valid: true, formatted: " 1234 ", parsed: " 1234 "}), {
     errors: [],
     formatted: "1234",
     parsed: "1234",
@@ -56,7 +56,7 @@ test("trims whitespace", t => {
 });
 
 test("catches too short", t => {
-  t.deepEqual(formatter.format("123 "), {
+  t.deepEqual(SsnLastFourFormatter({errors: [], valid: true, formatted: "123 ", parsed: "123 "}), {
     errors: ["FormFormatters.last4Invalid"],
     formatted: "123 ",
     parsed: "123 ",
@@ -65,7 +65,7 @@ test("catches too short", t => {
 });
 
 test("catches too long", t => {
-  t.deepEqual(formatter.format("12345"), {
+  t.deepEqual(SsnLastFourFormatter({errors: [], valid: true, formatted: "12345", parsed: "12345"}), {
     errors: ["FormFormatters.last4Invalid"],
     formatted: "12345",
     parsed: "12345",

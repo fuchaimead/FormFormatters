@@ -1,8 +1,8 @@
 import test from "ava";
-import formatter from "../../src/formatters/percent";
+import { PercentFormatter } from "../../src";
 
 test("converts null", t => {
-  t.deepEqual(formatter.format(null), {
+  t.deepEqual(PercentFormatter({errors: [], valid: true, formatted: null, parsed: null}), {
     errors: [],
     formatted: null,
     parsed: null,
@@ -11,7 +11,7 @@ test("converts null", t => {
 });
 
 test("does not return an error if empty string", t => {
-  t.deepEqual(formatter.format(""), {
+  t.deepEqual(PercentFormatter({errors: [], valid: true, formatted: "", parsed: ""}), {
     errors: [],
     formatted: "",
     parsed: "",
@@ -20,7 +20,7 @@ test("does not return an error if empty string", t => {
 });
 
 test("converts number", t => {
-  t.deepEqual(formatter.format(23), {
+  t.deepEqual(PercentFormatter({errors: [], valid: true, formatted: 23, parsed: 23}), {
     errors: [],
     formatted: "23%",
     parsed: 23,
@@ -29,7 +29,7 @@ test("converts number", t => {
 });
 
 test("has decimal", t => {
-  t.deepEqual(formatter.format(23.23), {
+  t.deepEqual(PercentFormatter({errors: [], valid: true, formatted: 23.23, parsed: 23.23}), {
     errors: [],
     formatted: "23.23%",
     parsed: 23.23,
@@ -38,7 +38,7 @@ test("has decimal", t => {
 });
 
 test("trims white space", t => {
-  t.deepEqual(formatter.format(" 1112223333 "), {
+  t.deepEqual(PercentFormatter({errors: [], valid: true, formatted: " 1112223333 ", parsed: " 1112223333 "}), {
     errors: [],
     formatted: "1,112,223,333%",
     parsed: 1112223333,
@@ -47,7 +47,7 @@ test("trims white space", t => {
 });
 
 test("formats strings", t => {
-  t.deepEqual(formatter.format("1112223333"), {
+  t.deepEqual(PercentFormatter({errors: [], valid: true, formatted: "1112223333", parsed: "1112223333"}), {
     errors: [],
     formatted: "1,112,223,333%",
     parsed: 1112223333,
@@ -56,7 +56,7 @@ test("formats strings", t => {
 });
 
 test("handles errors", t => {
-  t.deepEqual(formatter.format("asdf"), {
+  t.deepEqual(PercentFormatter({errors: [], valid: true, formatted: "asdf", parsed: "asdf"}), {
     errors: ["FormFormatters.numberInvalid"],
     formatted: "asdf",
     parsed: "asdf",
@@ -65,7 +65,7 @@ test("handles errors", t => {
 });
 
 test("decimal string", t => {
-  t.deepEqual(formatter.format("23.23%"), {
+  t.deepEqual(PercentFormatter({errors: [], valid: true, formatted: "23.23%", parsed: "23.23%"}), {
     errors: [],
     formatted: "23.23%",
     parsed: 23.23,

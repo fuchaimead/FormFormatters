@@ -7,6 +7,7 @@ import HexFormatter from "./formatters/hex";
 import MonthYearFormatter from "./formatters/monthYear";
 import NameFormatter from "./formatters/name";
 import NumberFormatter from "./formatters/number";
+import PercentFormatter from "./formatters/percent";
 import RequiredFormatter from "./formatters/required";
 
 module.exports = {
@@ -27,7 +28,7 @@ module.exports = {
   NameFormatter: NameFormatter,
   NumberFormatter: NumberFormatter,
   NumberMask: require("./masks/number"),
-  PercentFormatter: require("./formatters/percent"),
+  PercentFormatter: PercentFormatter,
   PercentMask: require("./masks/percent"),
   PhoneFormatter: require("./formatters/phone"),
   PhoneMask: require("./masks/phone"),

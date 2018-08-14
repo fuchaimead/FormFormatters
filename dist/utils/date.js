@@ -8,7 +8,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 module.exports = {
   parse: function parse(date) {
-    return (0, _moment2.default)(date, [
+    return _moment2.default.utc(date, [
     // dates
     "MMDDYYYY", "MMM YYYY", "MMM DD YYYY", "M-D-YYYY", "YYYY-M-D",
     // date times

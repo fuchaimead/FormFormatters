@@ -1,21 +1,25 @@
 "use strict";
 
-var _lodash = require("lodash");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-var RequiredFormatter = {
-  format: function format(value) {
-    var errors = [];
-    if ((0, _lodash.isNil)(value) || (0, _lodash.isArray)(value) && (0, _lodash.isEmpty)(value) || value === "" || value === false) {
-      errors.push("FormFormatters.required");
-    }
+exports.default = function (_ref) {
+  var errors = _ref.errors,
+      formatted = _ref.formatted,
+      parsed = _ref.parsed,
+      valid = _ref.valid;
 
-    return {
-      valid: errors.length === 0,
-      formatted: value,
-      parsed: value,
-      errors: errors
-    };
+  if ((0, _lodash.isNil)(formatted) || (0, _lodash.isArray)(formatted) && (0, _lodash.isEmpty)(formatted) || formatted === "" || formatted === false) {
+    errors.push("FormFormatters.required");
   }
+
+  return {
+    valid: errors.length === 0,
+    formatted: formatted,
+    parsed: parsed,
+    errors: errors
+  };
 };
 
-module.exports = RequiredFormatter;
+var _lodash = require("lodash");

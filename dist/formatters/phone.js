@@ -1,31 +1,35 @@
 "use strict";
 
-var _lodash = require("lodash");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-var PhoneFormatter = {
-  format: function format(value) {
-    var parsed = value;
-    var formatted = value;
-    var errors = [];
+exports.default = function (_ref) {
+  var errors = _ref.errors,
+      value = _ref.formatted,
+      parsed = _ref.parsed;
 
-    if (!(0, _lodash.isNil)(value) && value !== "") {
-      // remove all non-digits
-      parsed = parsed.toString().replace(/\D/g, "");
-      formatted = parsed.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
-      if (parsed.length !== 10) {
-        parsed = value;
-        formatted = value;
-        errors.push("FormFormatters.phoneInvalid");
-      }
+  var formatted = value;
+
+  if (!(0, _lodash.isNil)(value) && value !== "") {
+    // remove all non-digits
+    parsed = parsed.toString().replace(/\D/g, "");
+    formatted = parsed.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+    if (parsed.length !== 10) {
+      parsed = value;
+      formatted = value;
+      errors.push("FormFormatters.phoneInvalid");
     }
-
-    return {
-      valid: errors.length === 0,
-      parsed: parsed,
-      formatted: formatted,
-      errors: errors
-    };
   }
+
+  return {
+    valid: errors.length === 0,
+    parsed: parsed,
+    formatted: formatted,
+    errors: errors
+  };
 };
 
-module.exports = PhoneFormatter;
+var _lodash = require("lodash");
+
+;

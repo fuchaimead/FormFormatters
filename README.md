@@ -4,11 +4,8 @@
 
 Formatters and masks for validating and manipulating user input.
 
-This library is designed translation of error messages. It will respond with unique keys representing error text. You chould use [Simple Translator](https://github.com/AlchemyAlcove/SimpleTranslator) library for multi lingual support on error messages.
+Formatters take user input in an object and return an object representing user data, parsed data, and errors. For example if the user entered " 1112223333 " into a currency field. The response would be:
 
-Formatters take user input and return an object. For example if the user entered " 1112223333 " into a currency field. The response would be:
-
-Converters take a parsed value (from the api) and convert them into form usable values.
 ```json
 {
   errors: [],
@@ -31,7 +28,15 @@ Entering "abc" into a currency field would result in:
 
 You might be thinking, but it's a number field how come the result has letters in it? Well the formatters job is to format the text and respond with whether it is valid. The masks job is to mask out values like letters from currency inputs. The mask should run before the formatter.
 
+Data going into the formatters is structured the same going in as coming out that way they are chainable.
+
+Converters take a parsed value (from the api) and convert them into a form usable value.
+
 The mask will return in the the same format as the entry. In other words, it will not return in a complex object.
+
+## Error Messaging
+
+This library is designed for use with a translation tool. It will respond with unique keys representing error text. You could use [Simple Translator](https://github.com/AlchemyAlcove/SimpleTranslator) library for multi lingual support on error messages.
 
 ## Formatters
 
@@ -70,6 +75,12 @@ The mask will return in the the same format as the entry. In other words, it wil
 - DateConverter
 
 ## Releases
+
+v1.0.3
+
+Fixing formatters to work with same in same out object approach.
+
+Added date converter.
 
 v1.0.2
 

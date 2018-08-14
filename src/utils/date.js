@@ -2,7 +2,7 @@ import Moment from "moment";
 
 module.exports = {
   parse(date) {
-    return Moment(date, [
+    return Moment.utc(date, [
       // dates
       "MMDDYYYY",
       "MMM YYYY",

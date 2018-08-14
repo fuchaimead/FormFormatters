@@ -1,29 +1,31 @@
 "use strict";
 
-var _lodash = require("lodash");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-var EmailFormatter = {
-  format: function format(value) {
-    var parsed = value;
-    var formatted = value;
-    var errors = [];
+exports.default = function (_ref) {
+  var errors = _ref.errors,
+      value = _ref.formatted,
+      parsed = _ref.parsed;
 
-    if (!(0, _lodash.isNil)(value) && value !== "") {
-      parsed = parsed.toString().toLowerCase().trim();
-      formatted = formatted.toString().toLowerCase().trim();
-      // remove all non-digits
-      if (!/^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\.[A-Za-z]+$/.test(formatted)) {
-        errors.push("FormFormatters.emailInvalid");
-      }
+  var formatted = value;
+
+  if (!(0, _lodash.isNil)(value) && value !== "") {
+    parsed = parsed.toString().toLowerCase().trim();
+    formatted = formatted.toString().toLowerCase().trim();
+    // remove all non-digits
+    if (!/^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\.[A-Za-z]+$/.test(formatted)) {
+      errors.push("FormFormatters.emailInvalid");
     }
-
-    return {
-      valid: errors.length === 0,
-      parsed: parsed,
-      formatted: formatted,
-      errors: errors
-    };
   }
+
+  return {
+    valid: errors.length === 0,
+    parsed: parsed,
+    formatted: formatted,
+    errors: errors
+  };
 };
 
-module.exports = EmailFormatter;
+var _lodash = require("lodash");

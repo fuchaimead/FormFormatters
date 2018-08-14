@@ -8,8 +8,8 @@ export default function({errors, formatted: value, parsed}) {
     let temp = date.parse(parsed);
     if(temp.isValid()) {
       // store parsed value as just the date portion.
-      parsed = temp.unix();
-      formatted = temp.format("MMM D, YYYY");
+      parsed = temp.clone().utc().unix();
+      formatted = temp.clone().format("MMM D, YYYY");
     } else {
       errors.push("FormFormatters.dateInvalid");
     }

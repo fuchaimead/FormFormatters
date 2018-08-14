@@ -52,6 +52,30 @@ var _required = require("./formatters/required");
 
 var _required2 = _interopRequireDefault(_required);
 
+var _rgb = require("./formatters/rgb");
+
+var _rgb2 = _interopRequireDefault(_rgb);
+
+var _ssn = require("./formatters/ssn");
+
+var _ssn2 = _interopRequireDefault(_ssn);
+
+var _ssnLastFour = require("./formatters/ssnLastFour");
+
+var _ssnLastFour2 = _interopRequireDefault(_ssnLastFour);
+
+var _string = require("./formatters/string");
+
+var _string2 = _interopRequireDefault(_string);
+
+var _time = require("./formatters/time");
+
+var _time2 = _interopRequireDefault(_time);
+
+var _whole = require("./formatters/whole");
+
+var _whole2 = _interopRequireDefault(_whole);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = {
@@ -78,15 +102,15 @@ module.exports = {
   PhoneFormatter: _phone2.default,
   PhoneMask: require("./masks/phone"),
   RequiredFormatter: _required2.default,
-  RgbFormatter: require("./formatters/rgb"),
-  SsnFormatter: require("./formatters/ssn"),
+  RgbFormatter: _rgb2.default,
+  SsnFormatter: _ssn2.default,
   SsnMask: require("./masks/ssn"),
-  SsnLastFourFormatter: require("./formatters/ssnLastFour"),
+  SsnLastFourFormatter: _ssnLastFour2.default,
   SsnLastFourMask: require("./masks/ssnLastFour"),
-  StringFormatter: require("./formatters/string"),
+  StringFormatter: _string2.default,
   StringMask: require("./masks/string"),
-  TimeFormatter: require("./formatters/time"),
+  TimeFormatter: _time2.default,
   TimeMask: require("./masks/time"),
-  WholeNumberFormatter: require("./formatters/whole"),
+  WholeNumberFormatter: _whole2.default,
   WholeNumberMask: require("./masks/wholeNumber")
 };

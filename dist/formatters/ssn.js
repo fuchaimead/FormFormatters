@@ -1,33 +1,35 @@
 "use strict";
 
-var _lodash = require("lodash");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-var SSNFormatter = {
-  format: function format(value) {
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+exports.default = function (_ref) {
+  var errors = _ref.errors,
+      value = _ref.formatted,
+      parsed = _ref.parsed;
 
-    var parsed = value;
-    var formatted = value;
-    var errors = [];
+  var formatted = value;
 
-    if (!(0, _lodash.isNil)(value) && value !== "") {
-      // remove all non-digits
-      parsed = parsed.toString().replace(/\D/g, "");
-      formatted = parsed.replace(/^(\d{3})(\d{2})(\d{4})$/, "$1-$2-$3");
-      if (parsed.length !== 9) {
-        parsed = value;
-        formatted = value;
-        errors.push("FormFormatters.ssnInvalid");
-      }
+  if (!(0, _lodash.isNil)(value) && value !== "") {
+    // remove all non-digits
+    parsed = parsed.toString().replace(/\D/g, "");
+    formatted = parsed.replace(/^(\d{3})(\d{2})(\d{4})$/, "$1-$2-$3");
+    if (parsed.length !== 9) {
+      parsed = value;
+      formatted = value;
+      errors.push("FormFormatters.ssnInvalid");
     }
-
-    return {
-      valid: errors.length === 0,
-      parsed: parsed,
-      formatted: formatted,
-      errors: errors
-    };
   }
+
+  return {
+    valid: errors.length === 0,
+    parsed: parsed,
+    formatted: formatted,
+    errors: errors
+  };
 };
 
-module.exports = SSNFormatter;
+var _lodash = require("lodash");
+
+;

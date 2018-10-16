@@ -13,9 +13,10 @@ exports.default = function (_ref) {
 
   if (!(0, _lodash.isNil)(value) && value !== "") {
     // remove all non-digits
-    parsed = parsed.toString().replace(/\D/g, "");
-    formatted = parsed.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
-    if (parsed.length !== 10) {
+    var sanitized = value.toString().replace(/\D/g, "");
+    parsed = sanitized.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
+    formatted = sanitized.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+    if (parsed.length !== 12) {
       parsed = value;
       formatted = value;
       errors.push("FormFormatters.phoneInvalid");

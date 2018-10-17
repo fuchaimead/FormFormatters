@@ -48,6 +48,10 @@ var _phone = require("./formatters/phone");
 
 var _phone2 = _interopRequireDefault(_phone);
 
+var _phoneString = require("./formatters/phoneString");
+
+var _phoneString2 = _interopRequireDefault(_phoneString);
+
 var _required = require("./formatters/required");
 
 var _required2 = _interopRequireDefault(_required);
@@ -100,7 +104,9 @@ module.exports = {
   PercentFormatter: _percent2.default,
   PercentMask: require("./masks/percent"),
   PhoneFormatter: _phone2.default,
+  PhoneStringFormatter: _phoneString2.default,
   PhoneMask: require("./masks/phone"),
+  PhoneStringMask: require("./masks/phoneString"),
   RequiredFormatter: _required2.default,
   RgbFormatter: _rgb2.default,
   SsnFormatter: _ssn2.default,

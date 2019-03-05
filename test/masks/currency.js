@@ -13,6 +13,10 @@ test("String with '$' should remove it", t => {
   t.deepEqual(mask.mask("$123.12"), "123.12");
 });
 
+test("Keeps negtive amounts", t => {
+  t.deepEqual(mask.mask("$-123.12"), "-123.12");
+});
+
 test("Large number", t => {
   t.deepEqual(mask.mask("123,123,123.12"), "123,123,123.12");
 });

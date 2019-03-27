@@ -32,7 +32,7 @@ test("trims white space", t => {
   t.deepEqual(PhoneStringFormatter({errors: [], valid: true, formatted: " 1112223333 ", parsed: " 1112223333 "}), {
     errors: [],
     formatted: "(111) 222-3333",
-    parsed: "111-222-3333",
+    parsed: "(111) 222-3333",
     valid: true
   });
 });
@@ -41,7 +41,7 @@ test("formats strings", t => {
   t.deepEqual(PhoneStringFormatter({errors: [], valid: true, formatted: "1112223333", parsed: "1112223333"}), {
     errors: [],
     formatted: "(111) 222-3333",
-    parsed: "111-222-3333",
+    parsed: "(111) 222-3333",
     valid: true
   });
 });

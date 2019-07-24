@@ -1,6 +1,6 @@
 {
   "name": "form-formatters",
-  "version": "1.2.0",
+  "version": "1.2.3",
   "private": false,
   "description": "Formatters and masks for validating and manipulating user input.",
   "author": "AlchemyAlcove",
@@ -12,7 +12,6 @@
   "scripts": {
     "lint": "eslint src",
     "build": "babel src --out-dir dist",
-    "security": "node_modules/nsp/bin/nsp check",
     "test": "ava"
   },
   "dependencies": {

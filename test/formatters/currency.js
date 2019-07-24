@@ -37,11 +37,20 @@ test("formats cents", t => {
   });
 });
 
-test("formats cents", t => {
+test("formats cents when number is flat", t => {
   t.deepEqual(CurrencyFormatter({errors: [], valid: true, formatted: "5", parsed: "5"}), {
     errors: [],
     formatted: "5.00",
     parsed: 5.00,
+    valid: true
+  });
+});
+
+test("Properly handles negitive amounts", t => {
+  t.deepEqual(CurrencyFormatter({errors: [], valid: true, formatted: "-5.00", parsed: "-5.00"}), {
+    errors: [],
+    formatted: "-5.00",
+    parsed: -5.00,
     valid: true
   });
 });

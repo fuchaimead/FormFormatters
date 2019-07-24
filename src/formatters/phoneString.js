@@ -6,9 +6,10 @@ export default function({errors, formatted: value, parsed}) {
   if(!isNil(value) && value !== "") {
     // remove all non-digits
     let sanitized = value.toString().replace(/\D/g, "");
-    parsed = sanitized.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
     formatted = sanitized.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
-    if(parsed.length !== 12) {
+    parsed = formatted;
+
+    if(parsed.length !== 14) {
       parsed = value;
       formatted = value;
       errors.push("FormFormatters.phoneInvalid");
